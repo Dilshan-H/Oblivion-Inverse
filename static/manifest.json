@@ -1,0 +1,25 @@
+{
+  "short_name": "Oblivion-Inverse",
+  "name": "Simple E-Mail Tracker",
+  "icons": [
+    {
+      "src": "{{ url_for('static', filename = 'favicon.ico') }}",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "{{ url_for('static', filename = 'logo192.png') }}",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "{{ url_for('static', filename = 'logo512.png') }}",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#00c4a7",
+  "background_color": "#ffffff"
+}

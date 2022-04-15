@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="column is-4 is-offset-4">
+<div class="box">
+<div class="container" data-aos="fade">
+  <center>
+    <div class="subtitle">Okay, Let's track your e-mail!</div>
+  </center>
+</div>
+
+<hr />
+
+<form action="{{ url_for('index') }}" method="post">
+{{ form.csrf_token }}
+<div class="container" data-aos="fade">
+  <div class="field">
+    <label class="label">Email Title:</label>
+    <div class="control">
+      {{ form.email_title(class="input is-primary is-rounded", placeholder="Input Email Title", maxlength=25, spellcheck="", autofocus="") }}
+    </div>
+    <p class="help">Input a suitable title for your email here</p>
+  </div>
+
+  <div class="control">
+    {{ form.submit(class="button is-block is-primary is-large is-fullwidth") }}
+  </div>
+</div>
+</form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Oblivion-Inverse : A Simple E-Mail Tracker"
+    />
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename = 'logo192.png') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename = 'manifest.json') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+
+    <title>.: Oblivion-Inverse :.</title>
+  </head>
+
+  <body>
+    <div class="Header">
+      <nav
+        class="navbar has-shadow"
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div class="navbar-brand">
+          <a href="{{ url_for('index') }}">
+          <h1 class="title" style="margin: 5px 10px 2px;">Oblivion<sup>-1</sup></h1>
+        </a>
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            href="#"
+            onClick="managePane();"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasic" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="{{ url_for('tracklist') }}">
+              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Tracking List </span>
+            </a>
+            {% if current_user.is_authenticated %}
+            <a class="navbar-item" href="{{ url_for('logout') }}">
+              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Log out </span>
+            </a>
+            {% endif %}
+          </div>
+
+          <div class="navbar-end">
+            <a
+              id="t-3"
+              class="navbar-item"
+              href="https://github.com/Dilshan-H/Oblivion-Inverse"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span class="icon-text">
+                <span class="icon">
+                  <ion-icon name="logo-github" size="large"></ion-icon>
+                </span>
+                <b>View on GitHub</b>
+              </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <div class="column is-4 is-offset-4">
+      <div class="notification is-warning">
+        <p style="text-align: center">
+          <strong> {{ message }} </strong>
+        </p>
+      </div>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+    {% block main %} {% endblock %}
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script type = "text/javascript">
+      function managePane(){
+        var burger = document.querySelector('.navbar-burger');
+        var nav = document.querySelector('#navbarBasic');
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active')
+      }
+    </script>
+
+    <style>
+      html{
+        background-color: #C7F8CA;
+      }
+      .navbar{
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        margin-left: 5px;
+        margin-right: 5px;
+        overflow: hidden;
+      }
+    </style>
+
+  </body>
+</html>

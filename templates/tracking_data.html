@@ -1,0 +1,101 @@
+{% extends "base.html" %} {% block main %}
+
+<div class="container">
+  <div id="basicInfo" class="card" style="margin: 10px">
+    <header class="card-header">
+      <p class="card-header-title">{{ data.emailTitle }}</p>
+    </header>
+
+    <div class="card-body" style="padding: 15px">
+      <p>UTM ID:</p>
+      <span>
+        {{ data.utmId }}
+        <div id="copyIcon" class="icon" title="Copy Tracking Link" onclick="copyLink(this);">
+          <ion-icon name="copy" size="small"></ion-icon>
+        </div>
+      </span>
+
+      <p class="help">
+        You can manipulate email content to include this tracking pixel.<br>
+        <code>&lt;img src="https://oblivion-inverse.herokuapp.com/track?utm_id={{ data.utmId }}"/></code>
+      </p>
+      <p></p>
+
+      <p>Tracking Pixel:</p>
+      <div class="pixel-container">
+        <img id="OIPixel" src="{{ url_for('track') ~'?utm_id=' ~ data.utmId}}"/>
+        <p class="help">
+          Drag & drop above square to your email - DO NOT copy/paste!<br>
+          If you cannot see such square with a red outline, please whitelist/disable your ad blocker only for this site.
+        </p>
+      </div>
+
+      <p>Added on:</p>
+      <p>{{ data.generatedDate }}</p>
+
+      <p>Access Count:</p>
+      <span class="tag is-light is-success is-medium">{{ data.hits|length }}</span>
+
+    </div>
+  </div>
+
+  <div id="accessInfo" class="card" style="margin: 10px">
+    <header class="card-header">
+      <p class="card-header-title">Access Info</p>
+    </header>
+
+    <div class="card-body" style="padding: 15px">
+      {% if data.hits %} {% for item in data.hits %}
+      <div class="block">
+        <p>Timestamp:</p>
+        <p>{{ item.timestamp }}</p>
+
+        <p>IP:</p>
+        <p>{{ item.ipData }}</p>
+
+        <p>User-Agent:</p>
+        <p>{{ item.browserData }}</p>
+        <hr />
+      </div>
+
+      {% endfor %} {% else %}
+      
+      <div class="block">
+        <p><b>Nothing to display yet...</b></p>
+      </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .card-body p:nth-child(odd) {
+    margin-top: 10px;
+    margin-bottom: 2px;
+    font-weight: bold;
+  }
+  #copyIcon {
+    display: inline;
+    color: rgb(81, 176, 46);
+    cursor: pointer;
+  }
+  #OIPixel {
+    border: 2px dotted red;
+    height:40px;
+    width: 40px;
+    cursor: grab;
+  }
+  hr {
+    background-color: black;
+  }
+</style>
+
+<script>
+  function copyLink(el) {
+    el.querySelector('ion-icon').setAttribute('name', 'checkmark-circle');
+    navigator.clipboard.writeText("{{ url_for('track') }}" + '?utm_id=' + '{{ data.utmId }}');
+  }
+</script>
+
+{% endblock %}
