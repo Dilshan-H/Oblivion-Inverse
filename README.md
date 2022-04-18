@@ -11,7 +11,7 @@
     - [Installation](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-installation)
     - [Testing/Using on your Local Machine | Network](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-testingusing-on-your-local-machine--network)
     - [Deploying on Heroku Cloud Platform](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-deploying-on-heroku-cloud-platform)
-- [Steps to create a tracking link for your](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-steps-to-create-a-tracking-link-for-your-email)
+- [Steps to create a tracking link for your email](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-steps-to-create-a-tracking-link-for-your-email)
 - [How to use a Geo Location API](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-how-to-use-a-geo-location-api)
 - [Special note about G-Mail](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-special-note-about-g-mail)
 - [Why not using cookies for tracking?](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-why-not-using-cookies-for-tracking)
