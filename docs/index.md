@@ -5,8 +5,6 @@
 
 ![banner](https://user-images.githubusercontent.com/77499497/163841581-eb792235-3f8d-4998-a430-c4b2ffeda036.png)
 
-![banner](https://user-images.githubusercontent.com/77499497/163841581-eb792235-3f8d-4998-a430-c4b2ffeda036.png)
-
 - [What can I achieve using this?](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-what-can-i-achieve-using-this)
 - [Setup & Usage](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-setup--usage)
     - [Basic Requirements](https://github.com/Dilshan-H/Oblivion-Inverse#basic-requirements)
