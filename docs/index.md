@@ -11,7 +11,7 @@
 - [Setup & Usage](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-setup--usage)
     - [Basic Requirements](https://github.com/Dilshan-H/Oblivion-Inverse#basic-requirements)
     - [Installation](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-installation)
-    - [Testing/Using on your Local Machine | Network](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-testingusing-on-your-local-machine--network)
+    - [Testing/Using on your Local Machine/Network](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-testingusing-on-your-local-machine--network)
     - [Deploying on Heroku Cloud Platform](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-deploying-on-heroku-cloud-platform)
 - [Steps to create a tracking link for your email](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-steps-to-create-a-tracking-link-for-your-email)
 - [How to use a Geo Location API](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-how-to-use-a-geo-location-api)
@@ -89,7 +89,7 @@ If you're willing to use **Heroku**, here they have explained all the steps for 
 
 After that you can either test the application in your local machine or setup your selected platform as you wish. 
 
-### 🖥️ <u>**Testing/Using on your Local Machine | Network**</u>  
+### 🖥️ <u>Testing/Using on your Local Machine | Network</u>  
 
 If you have selected the first option then you have to issue following commands;
 
@@ -136,7 +136,7 @@ flask run --port 5001
 A login page will be displayed.  
 Input your newly created username & password and that's it!  
 
-### 🚀️ <u>**Deploying on Heroku Cloud Platform**</u>  
+### 🚀️ <u>Deploying on Heroku Cloud Platform</u>  
 
 If you're willing to use Heroku cloud platform, here's how to do that:
 (A Heroku account, Heroku CLI and Git will be needed. [Read Basic Requirements](https://github.com/Dilshan-H/Oblivion-Inverse#basic-requirements))
