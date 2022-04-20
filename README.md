@@ -29,6 +29,16 @@ Ex: `Mozilla/5.0 (Linux; Android 11; Nokia G10) AppleWebKit/537.36 (KHTML, like 
 
 - ✅️ Additionally, you can use a Geo Location API to obtain information such as *approximate location, country, ISP ( Internet Service Provider), whether the user is using a VPN/Tor and so on...* ) [Read how to use a Geo Location API section](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-how-to-use-a-geo-location-api)
 
+## 👀 Screenshots
+| Desktop View | Mobile View |
+| :-: | :-: |
+| ![001](https://user-images.githubusercontent.com/77499497/164163278-a17b7cb8-996d-4da2-9840-027651b380a0.png) | ![002](https://user-images.githubusercontent.com/77499497/164163325-10aeea2f-f343-4708-a413-8bf36994bf6b.png) |
+
+| Dashboard | Tracking Data |
+| :-: | :-: |
+| ![005](https://user-images.githubusercontent.com/77499497/164166439-acf8f86a-9dbd-48f1-af14-a5d3e7828fde.png) | ![006](https://user-images.githubusercontent.com/77499497/164166448-fa7a0ff2-54bd-48a6-929d-7029b21646d4.png) |
+
+
 ## ⚙️ Setup & Usage
 
 ### Basic Requirements
@@ -202,13 +212,22 @@ Input your newly created username & password and that's it!
 ## 🏷️ Steps to create a tracking link for your email.  
 
 1. Visit the homepage of the app and sign into your account.
+
+| Login Screen
+| :-: 
+| ![Screenshot from 2022-04-20 12-28-33](https://user-images.githubusercontent.com/77499497/164169416-19ec9b36-9da6-47ad-b73a-d2cfdd7eeee8.png)
    
 2. First add a suitable title for your message. You can add the subject of the specific email which will make it easier to identified at later times.
+
+| Create Entry
+| :-: 
+![003](https://user-images.githubusercontent.com/77499497/164166272-be810b73-c709-435a-af74-608512f9c381.png)
 
 3. Then click '**Generate**'
 
 4. Then, you can drag & drop the tracking image to the end of your message body. (**DO NOT copy & paste the image** since it will insert your image as a base64 image to the email body)  
 Otherwise, you can manipulate the content of the email body using Developer Tools in browser.
+![004](https://user-images.githubusercontent.com/77499497/164166346-03823760-968d-45cd-aab0-54f0c85004ab.png)
 
 5. Everything's done! Now send your email and wait for the results to appear. (you need to refresh your browser to load new entries)
 
