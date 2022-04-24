@@ -62,7 +62,7 @@ def track():
 
         if trackEvent:
             if current_user.is_authenticated:
-                return send_file(filename, mimetype='image/gif', cache_timeout=0, max_age=0)
+                return send_file(filename, mimetype='image/gif', max_age=0)
 
             ip = request.headers.get('X-Forwarded-For')
             header = request.headers['User-Agent']
@@ -86,7 +86,7 @@ def track():
     else:
         abort(400)
 
-    return send_file(filename, mimetype='image/gif', cache_timeout=0, max_age=0)
+    return send_file(filename, mimetype='image/gif', max_age=0)
 
 
 @app.route('/tracking-data/<utm_id>')
