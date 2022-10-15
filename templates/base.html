@@ -9,6 +9,7 @@
       name="description"
       content="Oblivion-Inverse : A Simple E-Mail Tracker"
     />
+    <script src="https://kit.fontawesome.com/76b066ae7b.js" crossorigin="anonymous"></script>
     <link rel="apple-touch-icon" href="{{ url_for('static', filename = 'logo192.png') }}" />
     <link rel="manifest" href="{{ url_for('static', filename = 'manifest.json') }}" />
     <link
@@ -50,9 +51,13 @@
               <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Tracking List </span>
             </a>
             {% if current_user.is_authenticated %}
+            <a class="navbar-item" href="{{ url_for('index') }}">
+              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;">Add E-Mail </span>
+            </a>
             <a class="navbar-item" href="{{ url_for('logout') }}">
               <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Log out </span>
             </a>
+
             {% endif %}
           </div>
 

@@ -44,6 +44,25 @@ def tracklist():
         flash("Sorry, No tracking records found! - Let's generate a one!")
         return redirect(url_for('index'))
 
+@app.route('/delete/<utm_id>', methods=['Delete','Get'])
+@login_required
+def delete(utm_id):
+    """ Delet particular track list """
+    # Delete enteries from track_data
+    dataDeleted = TrackData.query.filter_by(utmId = utm_id).delete()
+    # Delete enteries from link_hits
+    LinkHits.query.filter_by(utmId = utm_id).delete()
+    trackingList = TrackData.query.all()
+    count_tracking_list = TrackData.query.count()
+    if dataDeleted and count_tracking_list > 0:
+        db.session.commit()
+        return render_template('track_list.html', trackingList=trackingList)
+    elif dataDeleted and count_tracking_list == 0:
+        db.session.commit()
+        return redirect('/index/')
+    else:
+        abort(400)
+        return render_template('track_list.html', trackingList=trackingList)
 
 @app.route('/track')
 def track():
