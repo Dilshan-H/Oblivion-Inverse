@@ -44,13 +44,13 @@ Ex: `Mozilla/5.0 (Linux; Android 11; Nokia G10) AppleWebKit/537.36 (KHTML, like 
 ### Basic Requirements
 - Python3 and Pip
 - Git  
-    - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git  
-    - https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+    - [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  
+    - [Setup Git](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
 
 - Heroku Account & Heroku CLI (or suitable platform)  
-If you're willing to use **Heroku**, here they have explained all the steps for getting started with python apps.
-    - https://devcenter.heroku.com/articles/getting-started-with-python
-- Code Editor (such as VS Code)
+If you're willing to use **Heroku**, [here](https://devcenter.heroku.com/articles/getting-started-with-python) they have explained all the steps for getting started with python apps.
+
+- Code Editor (such as [VS Code](https://code.visualstudio.com/))
 
 ### 📥️ Installation
 1. First clone or download this repository as a Zip file to your local machine.
@@ -95,11 +95,11 @@ If you're willing to use **Heroku**, here they have explained all the steps for 
     pytz.all_timezones
     ``` 
 
-After that you can either test the application in your local machine or setup your selected platform as you wish. 
+After that you can either test the application in your local machine or setup your selected platform, as you wish. 
 
 ### 🖥️ <u>**Testing/Using on your Local Machine | Network**</u>  
 
-If you have selected the first option then you have to issue following commands;
+If you have selected the first option, then you have to issue following commands;
 
 ```bash
 export FLASK_ENV=development
@@ -206,7 +206,7 @@ If you have made any changes (such as changing the Timezone in `routes.py`) to t
     heroku open
     ```
 Alright - Now your app must be online!
-If every thing went smoothly; a login page will be displayed.  
+If everything went smoothly, a login page will be displayed.  
 Input your newly created username & password and that's it!
 
 ## 🏷️ Steps to create a tracking link for your email.  
@@ -257,6 +257,8 @@ Yes, you can set cookies for additional/accurate data collection. But they repre
 **The MIT License**
 
 This program is free software: you can redistribute it and/or modify it under the terms of the **MIT License**
+
+Refer to the [LICENSE](LICENSE) file for more details.
 
 **Heroku, GMail, ipwhois, VS Code, Chrome** are copyrights and/or trademarks of their respective owners.
 
