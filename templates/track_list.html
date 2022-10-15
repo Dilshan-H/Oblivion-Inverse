@@ -4,16 +4,19 @@
 
 <div class="container" style="margin-top: 15px;">
   {% for item in trackingList %}
-  <a href="{{ url_for('tracking_data', utm_id=item.utmId) }}">
 
     <div id="trackCards" class="card">
       <header class="card-header">
         <p class="card-header-title">
           {{ item.emailTitle }}
         </p>
+        <a href="{{ url_for('delete',  utm_id = item.utmId )}}" class="delete-button" method="delete">
+          <i class="fa fa-light fa-circle-minus"></i>
+        </a>
       </header>
 
       <div class="card-body" style="padding: 15px;">
+        <a href="{{ url_for('tracking_data', utm_id=item.utmId) }}">
         <h3>{{ item.utmId }}</h3>
         <p style="text-decoration: underline;">Added on: </p>
         <p>{{ item.generatedDate }}</p>
@@ -40,6 +43,23 @@
   }
   #trackCards:hover{
     box-shadow: 0px 0px 15px 5px rgba(8, 17, 6, 0.26);
+  }
+
+  .card-header{
+    display: flex;
+  }
+  .delete-button{
+    margin-top: 0.7em;
+    margin-right: 0.7em;
+  }
+
+  .delete-button:hover{
+    color: red;
+    cursor: pointer;
+  }
+  a{
+    color: black;
+    text-decoration: none;
   }
 </style>
 
