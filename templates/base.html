@@ -9,8 +9,14 @@
       name="description"
       content="Oblivion-Inverse : A Simple E-Mail Tracker"
     />
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename = 'logo192.png') }}" />
-    <link rel="manifest" href="{{ url_for('static', filename = 'manifest.json') }}" />
+    <link
+      rel="apple-touch-icon"
+      href="{{ url_for('static', filename = 'logo192.png') }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename = 'manifest.json') }}"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
@@ -28,8 +34,10 @@
       >
         <div class="navbar-brand">
           <a href="{{ url_for('index') }}">
-          <h1 class="title" style="margin: 5px 10px 2px;">Oblivion<sup>-1</sup></h1>
-        </a>
+            <h1 class="title" style="margin: 5px 10px 2px">
+              Oblivion<sup>-1</sup>
+            </h1>
+          </a>
           <a
             role="button"
             class="navbar-burger"
@@ -47,13 +55,32 @@
         <div id="navbarBasic" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item" href="{{ url_for('tracklist') }}">
-              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Tracking List </span>
+              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px">
+                Tracking List
+              </span>
             </a>
             {% if current_user.is_authenticated %}
             <a class="navbar-item" href="{{ url_for('logout') }}">
-              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Log out </span>
+              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px">
+                Log out
+              </span>
             </a>
             {% endif %}
+          </div>
+
+          <div class="search">
+            <form class="form-inline" method="GET">
+              <input
+                type="search"
+                placeholder="Email or Date"
+                name="q"
+              />
+              <button
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
           </div>
 
           <div class="navbar-end">
@@ -85,9 +112,7 @@
         </p>
       </div>
     </div>
-    {% endfor %} {% endif %} {% endwith %}
-    {% block main %} {% endblock %}
-
+    {% endfor %} {% endif %} {% endwith %} {% block main %} {% endblock %}
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
@@ -97,27 +122,52 @@
       src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
     ></script>
 
-    <script type = "text/javascript">
-      function managePane(){
-        var burger = document.querySelector('.navbar-burger');
-        var nav = document.querySelector('#navbarBasic');
-        burger.classList.toggle('is-active');
-        nav.classList.toggle('is-active')
+    <script type="text/javascript">
+      function managePane() {
+        var burger = document.querySelector(".navbar-burger");
+        var nav = document.querySelector("#navbarBasic");
+        burger.classList.toggle("is-active");
+        nav.classList.toggle("is-active");
       }
     </script>
 
     <style>
-      html{
-        background-color: #C7F8CA;
+      html {
+        background-color: #c7f8ca;
       }
-      .navbar{
+      .navbar {
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         margin-left: 5px;
         margin-right: 5px;
         overflow: hidden;
       }
-    </style>
 
+      .search{
+        margin-top: 1em;
+      }
+
+      .search input{
+        border: none;
+        border-radius: 10px;
+        height: 30px;
+        width: 65%;
+        padding: 2px 23px 2px 30px;
+        outline: 0;
+        background-color: #f5f5f5;
+      }
+
+      .search button{
+        width: 25%;
+        padding: 8px;
+        background: #2195f3;
+        border-radius: 10px;
+        color: white;
+        font-size: 12px;
+        border: 1px solid grey;
+        border-left: none; /* Prevent double borders */
+        cursor: pointer;
+      }
+    </style>
   </body>
 </html>
