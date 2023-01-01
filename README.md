@@ -1,5 +1,15 @@
 # **Oblivion<sup>-1</sup>** ~ A Simple E-mail Tracker
 
+## ⏳ Exciting features & changes are upcoming...
+- 🔎 Tracking link *Search* functionality
+- 🕶️ Theme Management (UI)
+- 💻 **PWA** functionality
+- 🏃 Migration from **Heroku**
+- 📋 Better database handling
+- 💆 Create/manage accounts
+
+<hr />
+
 🎯️ Oblivion-Inverse is a simple e-mail tracking solution which based on the usage of web beacons or tracking pixels.  
 > A web beacon (web bug) is a technique used on web pages and emails to unobtrusively (usually invisibly) allow checking that a user has accessed some content. Web beacons are typically used by third parties to monitor the activity of users at a website for the purpose of web analytics or page tagging. They can also be used for email tracking. - Wikipedia  
 
