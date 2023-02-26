@@ -23,6 +23,6 @@ pytz==2022.1
 requests==2.27.1
 SQLAlchemy==1.4.35
 urllib3==1.26.9
-Werkzeug==2.1.1
+Werkzeug==2.2.3
 WTForms==3.0.1
 zipp==3.8.0
