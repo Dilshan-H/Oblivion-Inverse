@@ -9,17 +9,32 @@
       name="description"
       content="Oblivion-Inverse : A Simple E-Mail Tracker"
     />
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename = 'logo192.png') }}" />
-    <link rel="manifest" href="{{ url_for('static', filename = 'manifest.json') }}" />
+    <meta name="author" content="Dilshan-H" />
+    <meta name="theme-color" content="#00c4a7" />
+    <link
+      rel="apple-touch-icon"
+      href="{{ url_for('static', filename = 'logo192.png') }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename = 'manifest.json') }}"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
     />
 
     <title>.: Oblivion-Inverse :.</title>
   </head>
 
   <body>
+    <div class="offline-notification">
+      You are offline. Please check your connection.
+    </div>
     <div class="Header">
       <nav
         class="navbar has-shadow"
@@ -28,8 +43,10 @@
       >
         <div class="navbar-brand">
           <a href="{{ url_for('index') }}">
-          <h1 class="title" style="margin: 5px 10px 2px;">Oblivion<sup>-1</sup></h1>
-        </a>
+            <h1 id="header-name" class="title" style="margin: 5px 10px 2px">
+              Oblivion<sup>-1</sup>
+            </h1>
+          </a>
           <a
             role="button"
             class="navbar-burger"
@@ -47,11 +64,15 @@
         <div id="navbarBasic" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item" href="{{ url_for('tracklist') }}">
-              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Tracking List </span>
+              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px">
+                Tracking List
+              </span>
             </a>
             {% if current_user.is_authenticated %}
             <a class="navbar-item" href="{{ url_for('logout') }}">
-              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px;"> Log out </span>
+              <span id="t-2" class="navbar-item" style="margin: 5px 0px 0px">
+                Log out
+              </span>
             </a>
             {% endif %}
           </div>
@@ -71,6 +92,20 @@
                 <b>View on GitHub</b>
               </span>
             </a>
+
+            <a
+              id="t-4"
+              class="navbar-item"
+              href="#"
+              title="Add Oblivion-Inverse to your Home Screen"
+            >
+              <span class="icon-text">
+                <span class="icon">
+                  <ion-icon name="cloud-download-outline"></ion-icon>
+                </span>
+                <b>Install</b>
+              </span>
+            </a>
           </div>
         </div>
       </nav>
@@ -85,9 +120,9 @@
         </p>
       </div>
     </div>
-    {% endfor %} {% endif %} {% endwith %}
-    {% block main %} {% endblock %}
+    {% endfor %} {% endif %} {% endwith %} {% block main %} {% endblock %}
 
+    <script src="{{ url_for('static', filename = 'app.js') }}"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
@@ -97,27 +132,13 @@
       src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
     ></script>
 
-    <script type = "text/javascript">
-      function managePane(){
-        var burger = document.querySelector('.navbar-burger');
-        var nav = document.querySelector('#navbarBasic');
-        burger.classList.toggle('is-active');
-        nav.classList.toggle('is-active')
+    <script type="text/javascript">
+      function managePane() {
+        var burger = document.querySelector(".navbar-burger");
+        var nav = document.querySelector("#navbarBasic");
+        burger.classList.toggle("is-active");
+        nav.classList.toggle("is-active");
       }
     </script>
-
-    <style>
-      html{
-        background-color: #C7F8CA;
-      }
-      .navbar{
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        margin-left: 5px;
-        margin-right: 5px;
-        overflow: hidden;
-      }
-    </style>
-
   </body>
 </html>

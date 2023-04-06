@@ -1,0 +1,45 @@
+html {
+  background-color: #c7f8ca;
+}
+.navbar {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  overflow: hidden;
+}
+
+#header-name:hover {
+  color: red;
+}
+
+#t-4 {
+  color: red;
+}
+
+#t-4:hover {
+  color: #ffffff;
+  background-color: rgb(247, 40, 40);
+}
+
+.offline-notification {
+  display: none;
+  padding: 1em;
+  text-align: center;
+}
+
+.offline-notification.show {
+  animation: fadeIn 0.7s linear;
+  background-color: red;
+  color: white;
+  display: block;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
