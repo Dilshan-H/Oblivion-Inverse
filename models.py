@@ -10,18 +10,20 @@ class TrackData(db.Model):
     hits = db.relationship("LinkHits")
 
     def __repr__(self):
-        return f'{self.utmId} created on {self.generatedDate}'
-    
+        return f"{self.utmId} created on {self.generatedDate}"
+
+
 class LinkHits(db.Model):
     __tablename__ = "link_hits"
     id = db.Column(db.Integer, primary_key=True)
     ipData = db.Column(db.String(500), nullable=True)
     browserData = db.Column(db.String(200), nullable=True)
     timestamp = db.Column(db.String(100), nullable=True)
-    utmId = db.Column(db.String(40), db.ForeignKey('track_data.utmId'))
+    utmId = db.Column(db.String(40), db.ForeignKey("track_data.utmId"))
 
     def __repr__(self):
-        return f'{self.ipData} accessed on {self.timestamp}'
+        return f"{self.ipData} accessed on {self.timestamp}"
+
 
 class Users(UserMixin, db.Model):
     __tablename__ = "users"
