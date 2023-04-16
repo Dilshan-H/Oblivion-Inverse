@@ -14,14 +14,17 @@
 
 🔴 **If you are willing to use this project right now, you can use the current version from [v1 branch](https://github.com/Dilshan-H/Oblivion-Inverse/tree/v1). Since Heroku has discontinued the free tier, the project is needed to be migrated to a new platform. But you can use v1 on a self hosted environment or on Heroku paid tier.**
 
-The new version will have the following features.
+Here we have the list of features that are going to be implemented in the next major updates. If you are willing to contribute, you can check or [open new issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new).
 
-- 🔎 Tracking link _Search_ functionality
-- 🕶️ Theme Management (UI)
-- 💻 **PWA** functionality
-- 🏃 Migration from **Heroku**
-- 📋 Better database handling
-- 💆 Easier user management
+| Feature \| Task                                        | Status |
+| ------------------------------------------------------ | :----: |
+| 🔐 Authentication handling - **Firebase Auth**         |   ✅   |
+| 📋 Better database handling - **Firebase Realtime DB** |   ✅   |
+| 🏃 Migration to **Render**                             |   🚧   |
+| 🕶️ Theme Management (**UI**)                           |   🚧   |
+| 🔎 Tracking link _Search_ functionality                |   🚧   |
+| 💻 **PWA** functionality                               |   🚧   |
+| 📖 Update Docs & Readme                                |   🚧   |
 
 <hr />
 
@@ -31,18 +34,19 @@ The new version will have the following features.
 
 ![banner](https://user-images.githubusercontent.com/77499497/163841581-eb792235-3f8d-4998-a430-c4b2ffeda036.png)
 
-- [What can I achieve using this?](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-what-can-i-achieve-using-this)
-- [Setup & Usage](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-setup--usage)
-  - [Basic Requirements](https://github.com/Dilshan-H/Oblivion-Inverse#basic-requirements)
-  - [Installation](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-installation)
-  - [Testing/Using on your Local Machine | Network](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-testingusing-on-your-local-machine--network)
-  - [Deploying on Heroku Cloud Platform](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-deploying-on-heroku-cloud-platform)
-- [Steps to create a tracking link for your email](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-steps-to-create-a-tracking-link-for-your-email)
-- [How to use a Geo Location API](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-how-to-use-a-geo-location-api)
-- [Special note about G-Mail](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-special-note-about-g-mail)
-- [Why not using cookies for tracking?](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-why-not-using-cookies-for-tracking)
-- [License & Copyrights](https://github.com/Dilshan-H/Oblivion-Inverse#license--copyrights)
-- [Disclaimer](https://github.com/Dilshan-H/Oblivion-Inverse#disclaimer)
+- [What can I achieve using this?](#🤔️-what-can-i-achieve-using-this)
+- [Setup & Usage](#⚙️-setup--usage)
+  - [Basic Requirements](#basic-requirements)
+  - [Installation](#📥️-installation)
+  - [Testing/Using on your Local Machine | Network](#🖥️-testingusing-on-your-local-machine--network)
+  - [Deploying on Heroku Cloud Platform](#🚀️-deploying-on-heroku-cloud-platform)
+- [Steps to create a tracking link for your email](#🏷️-steps-to-create-a-tracking-link-for-your-email)
+- [How to use a Geo Location API](#🌐️-how-to-use-a-geo-location-api)
+- [Special note about G-Mail](#📌️-special-note-about-g-mail)
+- [Why not using cookies for tracking?](#📌️-why-not-using-cookies-for-tracking)
+- [Contributing](#contributing)
+- [License & Copyrights](#license--copyrights)
+- [Disclaimer](#disclaimer)
 
 ## 🤔️ What can I achieve using this?
 
@@ -53,7 +57,7 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 - ✅️ Request Header - User-Agent (_Browser, Operating System, Device information_)  
   Ex: `Mozilla/5.0 (Linux; Android 11; Nokia G10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.88 Mobile Safari/537.36`
 
-- ✅️ Additionally, you can use a Geo Location API to obtain information such as _approximate location, country, ISP ( Internet Service Provider), whether the user is using a VPN/Tor and so on..._ ) [Read how to use a Geo Location API section](https://github.com/Dilshan-H/Oblivion-Inverse#%EF%B8%8F-how-to-use-a-geo-location-api)
+- ✅️ Additionally, you can use a Geo Location API to obtain information such as _approximate location, country, ISP ( Internet Service Provider), whether the user is using a VPN/Tor and so on..._ ) [Read how to use a Geo Location API section](#🌐️-how-to-use-a-geo-location-api)
 
 ## 👀 Screenshots
 
@@ -189,23 +193,23 @@ Input your newly created username & password and that's it!
 ### 🚀️ <u>**Deploying on Heroku Cloud Platform**</u>
 
 If you're willing to use Heroku cloud platform, here's how to do that:
-(A Heroku account, Heroku CLI and Git will be needed. [Read Basic Requirements](https://github.com/Dilshan-H/Oblivion-Inverse#basic-requirements))
+(A Heroku account, Heroku CLI and Git will be needed. [Read Basic Requirements](#basic-requirements))
 
 Change **line 20** in `tracking_data.html` according to your app name.
 
 ```html
-<code
-  >&lt;img src="https://your-app-name.herokuapp.com/track?utm_id={{ data.utmId
-  }}"/></code
->
+&lt;img src="https://your-app-name.herokuapp.com/track?utm_id={{ data.utmId
+}}"/>
 ```
 
 If you have made any changes (such as changing the Timezone in `routes.py`) to the source code, commit those changes using `git add .` and `git commit -m "commit-message"`
 
 1.  Login to Heroku.
+
     ```bash
     heroku login
     ```
+
 2.  Create a heroku app.
 
     ```bash
@@ -225,41 +229,43 @@ If you have made any changes (such as changing the Timezone in `routes.py`) to t
     ```
 
 4.  Then we have to create our database and add a new user account on the remote server. But before that we need to setup environment variables on Heroku.  
-     Add
-    SECRET_KEY as follows;
+    Add SECRET_KEY as follows;
 
-        ```bash
-        heroku config:set SECRET_KEY=replace-this-text-with-a-suitable-key
-        ```
+    ```bash
+    heroku config:set SECRET_KEY=replace-this-text-with-a-suitable-key
+    ```
 
-        After that issue following commands in the terminal;
-        `bash
+    After that issue following commands in the terminal;
 
+    ```bash
     heroku run python3
-    `
+    ```
 
-        ````python
-        import flask
-        from app import db
-        from models import db
-        db.create_all()
-            from werkzeug.security import generate_password_hash
-            userPassword = generate_password_hash('YOUR-PASSWORD', method='sha256')
+```python
+import flask
+from app import db
+from models import db
+db.create_all()
+from werkzeug.security import generate_password_hash
+userPassword = generate_password_hash('YOUR-PASSWORD', method='sha256')
+```
 
-            from models import Users
-            user = Users(username="YOUR-USERNAME", password=userPassword)
-            db.session.add(user)
-            db.session.commit()
+```python
+from models import Users
+user = Users(username="YOUR-USERNAME", password=userPassword)
+db.session.add(user)
+db.session.commit()
 
-            quit()
-            ```
-            ```bash
-            heroku open
-            ```
-        Alright - Now your app must be online!
-        If everything went smoothly, a login page will be displayed.
-        Input your newly created username & password and that's it!
-        ````
+quit()
+```
+
+```bash
+heroku open
+```
+
+Alright - Now your app must be online!
+If everything went smoothly, a login page will be displayed.
+Input your newly created username & password and that is it!
 
 ## 🏷️ Steps to create a tracking link for your email.
 
@@ -277,7 +283,7 @@ If you have made any changes (such as changing the Timezone in `routes.py`) to t
 
 3. Then click '**Generate**'
 
-4. Then, you can drag & drop the tracking image to the end of your message body. (**DO NOT copy & paste the image** since it will insert your image as a base64 image to the email body)  
+4. Then, you can drag & drop the tracking image to the end of your message body. (**DO NOT copy & paste the image** since it will insert your image as a base64 image to the email body)
    Otherwise, you can manipulate the content of the email body using Developer Tools in browser.
    ![004](https://user-images.githubusercontent.com/77499497/164166346-03823760-968d-45cd-aab0-54f0c85004ab.png)
 
@@ -304,7 +310,12 @@ But, on the bright side, you can still get the resource accessed date and time!
 
 #### **📌️ Why not using cookies for tracking?**
 
-Yes, you can set cookies for additional/accurate data collection. But they represent as third party cookies within devices. Most of the web browsers/platforms block such cookies by default. [maybe not Chrome :)] So, it's the death of 3<sup>rd</sup> party cookies. But you can try!
+Yes, you can set cookies for additional/accurate data collection. But they represent as third party cookies within devices. Most of the web browsers/platforms block such cookies by default. [maybe not Chrome yet 😉] So, it's the death of 3<sup>rd</sup> party cookies.  
+**Update:** Since some browsers/platforms allow 3<sup>rd</sup> party cookies, we are going to implement a cookie based tracking method in the future.
+
+## Contributing
+
+Got an idea? Found a bug? Feel free to [open an issue](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new) or submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License & Copyrights
 
