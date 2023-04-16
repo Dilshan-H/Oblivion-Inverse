@@ -130,3 +130,6 @@ dmypy.json
 
 # local DBs
 *.db
+
+# Firebase Credentials
+credentials.json

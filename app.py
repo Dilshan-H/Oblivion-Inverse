@@ -1,30 +1,67 @@
+# pylint: disable=wildcard-import, unused-wildcard-import, wrong-import-position
+
+"""
+Oblivion-Inverse - A Simple E-mail Tracking Solution.
+
+Oblivion-Inverse is a simple e-mail tracking solution built with Flask and Firebase.
+It allows you to generate a unique tracking images for your e-mails. It allows you to
+track when your e-mails are opened and further information about the device and browser
+used to open the e-mail.
+
+@Author: Dilshan-H (GitHub: dilshan-h)
+@License: MIT
+@URL: https://github.com/Dilshan-H/Oblivion-Inverse
+"""
+
 import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask import Flask, request, redirect, url_for, flash, session
+
+import firebase_admin
+from firebase_admin import credentials, auth
+
+cred = credentials.Certificate("credentials.json")
+firebase_admin.initialize_app(
+    cred,
+    {
+        "databaseURL": "https://oblivion-inverse-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    },
+)
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
 
 app.config["DEBUG"] = False
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["DATABASE_URL"].replace(
-    "postgres://", "postgresql://"
-)
 app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 
-db = SQLAlchemy(app)
 
-login_manager = LoginManager()
-login_manager.login_view = "login"
-login_manager.init_app(app)
+@app.before_request
+def validate_session():
+    """Validate each request with session cookie and firebase auth"""
+    # check if user is visiting login page
+    if request.path == "/login" or request.path == "/track":
+        return None
 
+    # read session cookie
+    session_cookie = request.cookies.get("secure-session")
+    if not session_cookie:
+        # Session cookie is unavailable. Force user to login.
+        return redirect(url_for("login"), 303)
+
+    try:
+        decoded_claims = auth.verify_session_cookie(session_cookie, check_revoked=True)
+        session["uid"] = decoded_claims["uid"]
+        return None
+    except auth.ExpiredSessionCookieError:
+        # Session cookie has been revoked. Force user to login.
+        flash("Session expired. Please login again.")
+        return redirect(url_for("login"))
+    except auth.InvalidSessionCookieError:
+        # Session cookie is invalid, expired or revoked. Force user to login.
+        flash("Please login to continue...")
+        return redirect(url_for("login"), 303)
+
+
+# import routes after app initialized
 from routes import *
-from models import Users
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return Users.query.get(int(user_id))
 
 
 if __name__ == "__main__":
