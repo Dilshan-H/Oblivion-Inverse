@@ -14,7 +14,7 @@
 
 🔴 **If you are willing to use this project right now, you can use the current version from [v1 branch](https://github.com/Dilshan-H/Oblivion-Inverse/tree/v1). Since Heroku has discontinued the free tier, the project is needed to be migrated to a new platform. But you can use v1 on a self hosted environment or on Heroku paid tier.**
 
-Here we have the list of features that are going to be implemented in the next major updates. If you are willing to contribute, you can check or [open new issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new).
+Here we have the list of features that are going to be implemented in the next major updates. If you are willing to contribute, you can [check available open issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues) or [open new issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new).
 
 | Feature \| Task                                        | Status |
 | ------------------------------------------------------ | :----: |
@@ -34,21 +34,21 @@ Here we have the list of features that are going to be implemented in the next m
 
 ![banner](https://user-images.githubusercontent.com/77499497/163841581-eb792235-3f8d-4998-a430-c4b2ffeda036.png)
 
-- [What can I achieve using this?](#🤔️-what-can-i-achieve-using-this)
-- [Setup & Usage](#⚙️-setup--usage)
+- [What can I achieve using this?](#what-can-i-achieve-using-this)
+- [Setup & Usage](#setup--usage)
   - [Basic Requirements](#basic-requirements)
-  - [Installation](#📥️-installation)
-  - [Testing/Using on your Local Machine | Network](#🖥️-testingusing-on-your-local-machine--network)
-  - [Deploying on Heroku Cloud Platform](#🚀️-deploying-on-heroku-cloud-platform)
-- [Steps to create a tracking link for your email](#🏷️-steps-to-create-a-tracking-link-for-your-email)
-- [How to use a Geo Location API](#🌐️-how-to-use-a-geo-location-api)
-- [Special note about G-Mail](#📌️-special-note-about-g-mail)
-- [Why not using cookies for tracking?](#📌️-why-not-using-cookies-for-tracking)
+  - [Installation](#installation)
+  - [Testing/Using on your Local Machine | Network](#testingusing-on-your-local-machine--network)
+  - [Deploying on Heroku Cloud Platform](#deploying-on-heroku-cloud-platform)
+- [Steps to create a tracking link for your email](#steps-to-create-a-tracking-link-for-your-email)
+- [How to use a Geo Location API](#how-to-use-a-geo-location-api)
+- [Special note about G-Mail](#special-note-about-g-mail)
+- [Why not using cookies for tracking?](#why-not-using-cookies-for-tracking)
 - [Contributing](#contributing)
 - [License & Copyrights](#license--copyrights)
 - [Disclaimer](#disclaimer)
 
-## 🤔️ What can I achieve using this?
+## What can I achieve using this?
 
 Basically using this pixel tracking method you can obtain vast amount of information about the targets. But, when it comes to emails there are few restrictions. For an instance, JavaScripts are not generally allowed in email clients.
 
@@ -57,9 +57,9 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 - ✅️ Request Header - User-Agent (_Browser, Operating System, Device information_)  
   Ex: `Mozilla/5.0 (Linux; Android 11; Nokia G10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.88 Mobile Safari/537.36`
 
-- ✅️ Additionally, you can use a Geo Location API to obtain information such as _approximate location, country, ISP ( Internet Service Provider), whether the user is using a VPN/Tor and so on..._ ) [Read how to use a Geo Location API section](#🌐️-how-to-use-a-geo-location-api)
+- ✅️ Additionally, you can use a Geo Location API to obtain information such as _approximate location, country, ISP ( Internet Service Provider), whether the user is using a VPN/Tor and so on..._ ) [Read how to use a Geo Location API section](#how-to-use-a-geo-location-api)
 
-## 👀 Screenshots
+## Screenshots
 
 |                                                 Desktop View                                                  |                                                  Mobile View                                                  |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -69,7 +69,7 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
 | ![005](https://user-images.githubusercontent.com/77499497/164166439-acf8f86a-9dbd-48f1-af14-a5d3e7828fde.png) | ![006](https://user-images.githubusercontent.com/77499497/164166448-fa7a0ff2-54bd-48a6-929d-7029b21646d4.png) |
 
-## ⚙️ Setup & Usage
+## Setup & Usage
 
 ### Basic Requirements
 
@@ -84,7 +84,7 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 
 - Code Editor (such as [VS Code](https://code.visualstudio.com/))
 
-### 📥️ Installation
+### Installation
 
 1. First clone or download this repository as a Zip file to your local machine.
 
@@ -139,7 +139,7 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 
 After that you can either test the application in your local machine or setup your selected platform, as you wish.
 
-### 🖥️ <u>**Testing/Using on your Local Machine | Network**</u>
+### Testing/Using on your Local Machine | Network
 
 If you have selected the first option, then you have to issue following commands;
 
@@ -190,10 +190,10 @@ flask run --port 5001
 A login page will be displayed.  
 Input your newly created username & password and that's it!
 
-### 🚀️ <u>**Deploying on Heroku Cloud Platform**</u>
+### Deploying on Heroku Cloud Platform
 
 If you're willing to use Heroku cloud platform, here's how to do that:
-(A Heroku account, Heroku CLI and Git will be needed. [Read Basic Requirements](#basic-requirements))
+(A Heroku account, Heroku CLI and Git will be needed. -- [Read Basic Requirements](#basic-requirements))
 
 Change **line 20** in `tracking_data.html` according to your app name.
 
@@ -267,7 +267,7 @@ Alright - Now your app must be online!
 If everything went smoothly, a login page will be displayed.
 Input your newly created username & password and that is it!
 
-## 🏷️ Steps to create a tracking link for your email.
+## Steps to create a tracking link for your email.
 
 1. Visit the homepage of the app and sign into your account.
 
@@ -289,7 +289,7 @@ Input your newly created username & password and that is it!
 
 5. Everything's done! Now send your email and wait for the results to appear. (you need to refresh your browser to load new entries)
 
-## 🌐️ How to use a Geo Location API
+## How to use a Geo Location API
 
 Using a Geo Location API, you can collect additional information about the recipient such as;
 
@@ -300,7 +300,7 @@ Using a Geo Location API, you can collect additional information about the recip
 
 In `routes.py` line 70 to 75 contains a simple API usage that can be altered according to your opinions. Please note that **ipwhois** service has certain limitations (like amount of requests) which may eventually cause errors. So, you can choose a better API which fit into your needs.
 
-#### **📌️ Special note about G-Mail**
+### Special note about G-Mail
 
 Since Google uses a special technique, "Image Proxies" to deliver images; this pixel based tracking method is not suitable to gather additional information about the recipients who use G-Mail. Instead of recipient's IP address and User-Agent, you will receive Google Image Proxy’s UA (User-Agent) and IP address which looks like this:
 
@@ -308,7 +308,7 @@ Since Google uses a special technique, "Image Proxies" to deliver images; this p
 
 But, on the bright side, you can still get the resource accessed date and time!
 
-#### **📌️ Why not using cookies for tracking?**
+### Why not using cookies for tracking?
 
 Yes, you can set cookies for additional/accurate data collection. But they represent as third party cookies within devices. Most of the web browsers/platforms block such cookies by default. [maybe not Chrome yet 😉] So, it's the death of 3<sup>rd</sup> party cookies.  
 **Update:** Since some browsers/platforms allow 3<sup>rd</sup> party cookies, we are going to implement a cookie based tracking method in the future.
