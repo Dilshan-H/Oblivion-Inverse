@@ -1,44 +1,43 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block main %}
 
-{% block main %}
-
-<div class="container" style="margin-top: 15px;">
+<div class="container" style="margin-top: 15px">
   {% for item in trackingList %}
-  <a href="{{ url_for('tracking_data', utm_id=item.utmId) }}">
-
+  <a href="{{ url_for('tracking_data', utm_id=item) }}">
     <div id="trackCards" class="card">
       <header class="card-header">
-        <p class="card-header-title">
-          {{ item.emailTitle }}
-        </p>
+        <p class="card-header-title">{{ trackingList[item]['MailTitle'] }}</p>
       </header>
 
-      <div class="card-body" style="padding: 15px;">
-        <h3>{{ item.utmId }}</h3>
-        <p style="text-decoration: underline;">Added on: </p>
-        <p>{{ item.generatedDate }}</p>
-        {% if item.hits %}
-        <p>Access Count: <span class="tag is-light is-success is-medium">{{ item.hits|length }}</span></p>
+      <div class="card-body" style="padding: 15px">
+        <h3>{{ item }}</h3>
+        <p style="text-decoration: underline">Added on:</p>
+        <p>{{ trackingList[item]['GeneratedOn'] }}</p>
+        {% if trackingList[item]['Hits'] %}
+        <p>
+          Access Count:
+          <span class="tag is-light is-success is-medium"
+            >{{ trackingList[item]['Hits']|length }}</span
+          >
+        </p>
         {% else %}
-          <span class="tag is-warning is-rounded">No Hits!</span>
+        <span class="tag is-warning is-rounded">No Hits!</span>
         {% endif %}
       </div>
-      
     </div>
   </a>
   {% endfor %}
 </div>
 
 <style>
-  .container{
+  .container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
   }
-  #trackCards{
+  #trackCards {
     margin: 10px;
   }
-  #trackCards:hover{
+  #trackCards:hover {
     box-shadow: 0px 0px 15px 5px rgba(8, 17, 6, 0.26);
   }
 </style>

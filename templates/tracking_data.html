@@ -3,39 +3,65 @@
 <div class="container">
   <div id="basicInfo" class="card" style="margin: 10px">
     <header class="card-header">
-      <p class="card-header-title">{{ data.emailTitle }}</p>
+      <p class="card-header-title">{{ data['MailTitle'] }}</p>
     </header>
 
     <div class="card-body" style="padding: 15px">
       <p>UTM ID:</p>
       <span>
-        {{ data.utmId }}
-        <div id="copyIcon" class="icon" title="Copy Tracking Link" onclick="copyLink(this);">
-          <ion-icon name="copy" size="small"></ion-icon>
+        {{ utm_id }}
+        <div
+          id="copyIcon"
+          class="icon"
+          title="Copy Tracking Link"
+          onclick="copyLink(this);"
+        >
+          <svg
+            id="copyIconSVG"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+            ></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          </svg>
         </div>
       </span>
 
       <p class="help">
-        You can manipulate email content to include this tracking pixel.<br>
-        <code>&lt;img src="https://your-app-name.herokuapp.com/track?utm_id={{ data.utmId }}"/></code>
+        You can manipulate email content to include this tracking pixel.<br />
+        <code
+          >&lt;img src="https://your-app-name.herokuapp.com/track?utm_id={{
+          utm_id }}"/></code
+        >
       </p>
       <p></p>
 
       <p>Tracking Pixel:</p>
       <div class="pixel-container">
-        <img id="OIPixel" src="{{ url_for('track') ~'?utm_id=' ~ data.utmId}}"/>
+        <img id="OIPixel" src="{{ url_for('track') ~'?utm_id='~ utm_id }}" />
         <p class="help">
-          Drag & drop above square to your email - DO NOT copy/paste!<br>
-          If you cannot see such square with a red outline, please whitelist/disable your ad blocker only for this site.
+          Drag & drop above square to your email - DO NOT copy/paste!<br />
+          If you cannot see such square with a red outline, please
+          whitelist/disable your ad blocker only for this site.
         </p>
       </div>
 
       <p>Added on:</p>
-      <p>{{ data.generatedDate }}</p>
+      <p>{{ data['GeneratedOn'] }}</p>
 
       <p>Access Count:</p>
-      <span class="tag is-light is-success is-medium">{{ data.hits|length }}</span>
-
+      <span class="tag is-light is-success is-medium"
+        >{{ link_hits|length }}</span
+      >
     </div>
   </div>
 
@@ -45,27 +71,26 @@
     </header>
 
     <div class="card-body" style="padding: 15px">
-      {% if data.hits %} {% for item in data.hits %}
+      {% if link_hits %} {% for item in link_hits %}
       <div class="block">
         <p>Timestamp:</p>
-        <p>{{ item.timestamp }}</p>
+        <p>{{ link_hits[item]['AccessedOn'] }}</p>
 
         <p>IP:</p>
-        <p>{{ item.ipData }}</p>
+        <p>{{ link_hits[item]['IP'] }}</p>
 
         <p>User-Agent:</p>
-        <p>{{ item.browserData }}</p>
+        <p>{{ link_hits[item]['UserAgent'] }}</p>
         <hr />
       </div>
 
       {% endfor %} {% else %}
-      
+
       <div class="block">
         <p><b>Nothing to display yet...</b></p>
       </div>
       {% endif %}
     </div>
-
   </div>
 </div>
 
@@ -82,7 +107,7 @@
   }
   #OIPixel {
     border: 2px dotted red;
-    height:40px;
+    height: 40px;
     width: 40px;
     cursor: grab;
   }
@@ -93,8 +118,14 @@
 
 <script>
   function copyLink(el) {
-    el.querySelector('ion-icon').setAttribute('name', 'checkmark-circle');
-    navigator.clipboard.writeText("{{ url_for('track') }}" + '?utm_id=' + '{{ data.utmId }}');
+    // change svg color and fade back to color none
+    el.children[0].setAttribute("fill", "green");
+    setTimeout(() => {
+      el.children[0].setAttribute("fill", "none");
+    }, 1500);
+    navigator.clipboard.writeText(
+      "{{ url_for('track') }}" + "?utm_id=" + "{{ utm_id }}"
+    );
   }
 </script>
 
