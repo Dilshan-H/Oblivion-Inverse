@@ -317,6 +317,8 @@ Yes, you can set cookies for additional/accurate data collection. But they repre
 
 Got an idea? Found a bug? Feel free to [open an issue](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new) or submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us. You can also check [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for more information.
+
 ## License & Copyrights
 
 **The MIT License**
