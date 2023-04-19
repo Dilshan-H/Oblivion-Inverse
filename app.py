@@ -22,9 +22,7 @@ from firebase_admin import credentials, auth
 cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(
     cred,
-    {
-        "databaseURL": "https://oblivion-inverse-default-rtdb.asia-southeast1.firebasedatabase.app/"
-    },
+    {"databaseURL": os.environ["FIREBASE_DB_URL"]},
 )
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
