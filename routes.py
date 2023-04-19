@@ -35,6 +35,8 @@ import requests
 from app import app
 import forms
 
+TIMEZONE = "Asia/Colombo"
+
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/index/", methods=["GET", "POST"])
@@ -46,8 +48,7 @@ def index():
     form = forms.GenerateTrackingLink()
     if form.validate_on_submit():
         utm_id = uuid.uuid4()
-        generated_on = str(dt.now().astimezone(pytz.timezone("Asia/Colombo")))
-        # ----------------- change the timezone accordingly ^^
+        generated_on = str(dt.now().astimezone(pytz.timezone(TIMEZONE)))
 
         # create a new tracking record for user on realtime database
         ref_1 = db.reference(f"/MailTrackData/Users/{session['uid']}")
@@ -146,8 +147,7 @@ def track():
             # not a valid session id, so create a link hit record
             ip_address = request.headers.get("X-Forwarded-For") or request.remote_addr
             header = request.headers["User-Agent"]
-            accessed_on = str(dt.now().astimezone(pytz.timezone("Asia/Colombo")))
-            # ----------------- change the timezone accordingly ^^
+            accessed_on = str(dt.now().astimezone(pytz.timezone(TIMEZONE)))
 
             # save the data to realtime database
             ref_2 = db.reference(f"/MailTrackData/LinkHits/{utm_id}/")
