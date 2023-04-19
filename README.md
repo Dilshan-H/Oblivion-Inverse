@@ -14,6 +14,8 @@
 
 🔴 **If you are willing to use this project right now, you can use the current version from [v1 branch](https://github.com/Dilshan-H/Oblivion-Inverse/tree/v1). Since Heroku has discontinued the free tier, the project is needed to be migrated to a new platform. But you can use v1 on a self hosted environment or on Heroku paid tier.**
 
+🔴 **Several sections in this README needs to be updated with the new changes.**
+
 Here we have the list of features that are going to be implemented in the next major updates. If you are willing to contribute, you can [check available open issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues) or [open new issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new).
 
 | Feature \| Task                                        | Status |
@@ -121,13 +123,11 @@ Basically using this pixel tracking method you can obtain vast amount of informa
    ```
 
 6. Change the time zone used in `routes.py`:
+   (Default value is `Asia/Colombo`)
 
    ```python
-   # Line 23
-   generatedOn = str(dt.now().astimezone(pytz.timezone('Use-Your-Time-Zone-Here')))
-
-   # Line 78
-   accessedOn = str(dt.now().astimezone(pytz.timezone('Use-Your-Time-Zone-Here')))
+   # Line 38
+   TIMEZONE = "Your-Timezone"
    ```
 
    To choose the correct time zone, you can query all the supported time zones like this;
@@ -137,43 +137,48 @@ Basically using this pixel tracking method you can obtain vast amount of informa
    pytz.all_timezones
    ```
 
+7. As we use Firebase Realtime Database and Firebase Authentication, you have to create a Firebase project and obtain the credentials. Visit [Firebase Console](https://console.firebase.google.com/) and create a new project.  
+   Then go to the project settings and click on the `Service Accounts` tab. Then click on the `Generate New Private Key` button. This will download a JSON file containing the credentials. Rename the file to `credentials.json` and place it in the root directory of the project.
+
+8. Now you have to create a new Firebase Authentication user. To do that, you have to go to the `Authentication` tab in the Firebase Console. Then click on the `Set up sign-in method` button. Then click on the `Email/Password` tab and enable it. Then click on the `Users` tab and click on the `Add User` button. Enter the email and password of the user account you want to create. Then click on the `Add User` button.
+
+9. Now you have to create a new Firebase Realtime Database. To do that, you have to go to the `Database` tab in the Firebase Console. Then click on the `Create Database` button. Then select the database location and click on the `Next` button. Then change the rules as follows and click on the `Enable` button:
+
+   ```json
+   {
+     "rules": {
+       "MailTrackData": {
+         "Users": {
+           "$uid": {
+             ".read": "auth !== null && auth.uid === $uid",
+             ".write": "auth !== null && auth.uid === $uid"
+           }
+         },
+
+         "LinkHits": {
+           ".read": false,
+           ".write": true
+         }
+       }
+     }
+   }
+   ```
+
+10. Now go to project settings again and under the **General** tab you can find the `Web API Key`. Take a note of it since we will need it on the next step.
+
 After that you can either test the application in your local machine or setup your selected platform, as you wish.
 
 ### Testing/Using on your Local Machine | Network
 
-If you have selected the first option, then you have to issue following commands;
+Before running the application, you have to set the following environment variables: (Just replace the values with your own and run the commands inside the activated virtual environment)
 
 ```bash
-export FLASK_ENV=development
-export DATABASE_URL="sqlite:///data.db"
+export FLASK_ENV="development"
+export FIREBASE_API_KEY="Your-Firebase-API-Key"
 export SECRET_KEY="replace-this-text-with-a-suitable-key"
-python3
 ```
 
-```python
-import flask
-from app import db
-from models import db
-db.create_all()
-```
-
-Next let's create a password hash for your user account:
-
-```python
-from werkzeug.security import generate_password_hash
-userPassword = generate_password_hash('YOUR-PASSWORD', method='sha256')
-```
-
-Then we can add the new user to the database:
-
-```python
-from models import Users
-user = Users(username="YOUR-USERNAME", password=userPassword)
-db.session.add(user)
-db.session.commit()
-```
-
-Then hit '**ctrl + z**' to quit from Python and start your development server:
+Then run the application using the following command:
 
 ```bash
 flask run
@@ -188,84 +193,12 @@ flask run --port 5001
 ```
 
 A login page will be displayed.  
-Input your newly created username & password and that's it!
+Input your newly created account's email & password and that's it!
 
-### Deploying on Heroku Cloud Platform
+## Deploying to Render
 
-If you're willing to use Heroku cloud platform, here's how to do that:
-(A Heroku account, Heroku CLI and Git will be needed. -- [Read Basic Requirements](#basic-requirements))
-
-Change **line 20** in `tracking_data.html` according to your app name.
-
-```html
-&lt;img src="https://your-app-name.herokuapp.com/track?utm_id={{ data.utmId
-}}"/>
-```
-
-If you have made any changes (such as changing the Timezone in `routes.py`) to the source code, commit those changes using `git add .` and `git commit -m "commit-message"`
-
-1.  Login to Heroku.
-
-    ```bash
-    heroku login
-    ```
-
-2.  Create a heroku app.
-
-    ```bash
-    heroku create YOUR-APP-NAME
-    ```
-
-3.  Next deploy the app:
-
-    ```bash
-    git push heroku main
-    ```
-
-    This will take a while to finish. After deploying we have to add **Heroku PostgreSQL** add-on:
-
-    ```bash
-    heroku addons:create heroku-postgresql:hobby-dev
-    ```
-
-4.  Then we have to create our database and add a new user account on the remote server. But before that we need to setup environment variables on Heroku.  
-    Add SECRET_KEY as follows;
-
-    ```bash
-    heroku config:set SECRET_KEY=replace-this-text-with-a-suitable-key
-    ```
-
-    After that issue following commands in the terminal;
-
-    ```bash
-    heroku run python3
-    ```
-
-```python
-import flask
-from app import db
-from models import db
-db.create_all()
-from werkzeug.security import generate_password_hash
-userPassword = generate_password_hash('YOUR-PASSWORD', method='sha256')
-```
-
-```python
-from models import Users
-user = Users(username="YOUR-USERNAME", password=userPassword)
-db.session.add(user)
-db.session.commit()
-
-quit()
-```
-
-```bash
-heroku open
-```
-
-Alright - Now your app must be online!
-If everything went smoothly, a login page will be displayed.
-Input your newly created username & password and that is it!
+> Instructions will be added soon.  
+> Like to complete this section? Open an issue...
 
 ## Steps to create a tracking link for your email.
 
