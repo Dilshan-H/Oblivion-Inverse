@@ -164,7 +164,9 @@ Basically using this pixel tracking method you can obtain vast amount of informa
    }
    ```
 
-10. Now go to project settings again and under the **General** tab you can find the `Web API Key`. Take a note of it since we will need it on the next step.
+10. Now go to project settings again and under the **General** tab you can find the `Web API Key`. And also,you are able to find the `Database URL` under the **SDK setup and configuration** tab there.  
+    (Ex: `databaseURL: "https://your-app-default-rtdb.asia-southeast1.firebasedatabase.app"`)  
+    Take a note of both of them since we will need them on the next step.
 
 After that you can either test the application in your local machine or setup your selected platform, as you wish.
 
@@ -175,6 +177,7 @@ Before running the application, you have to set the following environment variab
 ```bash
 export FLASK_ENV="development"
 export FIREBASE_API_KEY="Your-Firebase-API-Key"
+export FIREBASE_DB_URL="Your-Firebase-Database-URL"
 export SECRET_KEY="replace-this-text-with-a-suitable-key"
 ```
 
