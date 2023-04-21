@@ -99,7 +99,7 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 3. Create a virtual environment.
 
    ```python
-   python3 -m venv ./
+   python3 -m venv venv
    ```
 
 4. Activate virtual environment.
@@ -107,13 +107,13 @@ Basically using this pixel tracking method you can obtain vast amount of informa
    _Linux:_
 
    ```bash
-    source bin/activate
+    source venv/bin/activate
    ```
 
    _Windows:_
 
    ```bash
-   Scripts\activate
+   venv\Scripts\activate
    ```
 
 5. Install dependencies.
@@ -130,7 +130,7 @@ Basically using this pixel tracking method you can obtain vast amount of informa
    TIMEZONE = "Your-Timezone"
    ```
 
-   To choose the correct time zone, you can query all the supported time zones like this;
+   To choose the correct time zone, you can query all the supported time zones like this; open a separate python shell and run the following code.
 
    ```python
    import pytz
@@ -172,13 +172,24 @@ After that you can either test the application in your local machine or setup yo
 
 ### Testing/Using on your Local Machine | Network
 
-Before running the application, you have to set the following environment variables: (Just replace the values with your own and run the commands inside the activated virtual environment)
+Before running the application, you have to set the following environment variables: (Just replace the values with your own and run the commands inside the activated virtual environment - No commas on Windows)
+
+_Linux & macOS:_
 
 ```bash
-export FLASK_ENV="development"
-export FIREBASE_API_KEY="Your-Firebase-API-Key"
-export FIREBASE_DB_URL="Your-Firebase-Database-URL"
-export SECRET_KEY="replace-this-text-with-a-suitable-key"
+ export FLASK_ENV="development"
+ export FIREBASE_API_KEY="Your-Firebase-API-Key"
+ export FIREBASE_DB_URL="Your-Firebase-Database-URL"
+ export SECRET_KEY="replace-this-text-with-a-suitable-key"
+```
+
+_Windows:_
+
+```bash
+ set FLASK_ENV=development
+ set FIREBASE_API_KEY=Your-Firebase-API-Key
+ set FIREBASE_DB_URL=Your-Firebase-Database-URL
+ set SECRET_KEY=replace-this-text-with-a-suitable-key
 ```
 
 Then run the application using the following command:
