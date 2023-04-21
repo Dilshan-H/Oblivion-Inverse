@@ -1,0 +1,22 @@
+# Add 'Static' to any changes within 'static' folder
+Static:
+  - static/*
+
+# Add 'Frontend' to any file changes related to the frontend
+Frontend:
+  - templates/*
+
+# Add 'Backend' to any changes to the Backend files
+Backend:
+  - "*.py"
+
+# Add 'Docs' to new distribution files
+Docs:
+  - any:
+      [
+        "docs/*",
+        "README.md",
+        "LICENSE",
+        "CONTRIBUTING.md",
+        "CODE_OF_CONDUCT.md",
+      ]
