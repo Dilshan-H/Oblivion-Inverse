@@ -37,8 +37,8 @@ app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 @app.before_request
 def validate_session():
     """Validate each request with session cookie and firebase auth"""
-    # check if user is visiting login page
-    if request.path == "/login" or request.path == "/track":
+    # check if user is visiting login page or track page
+    if request.path in ["/login", "/track"]:
         return None
 
     # read session cookie
