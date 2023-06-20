@@ -1,4 +1,4 @@
-# pylint: disable=unused-import, missing-timeout
+# pylint: disable=unused-import, missing-timeout, import-error
 
 """
 Routes and views for the flask application.
@@ -12,28 +12,29 @@ Routes:
     - /tracking_data/<utm_id>
 """
 
-from datetime import datetime as dt, timedelta
-import uuid
 import os
+import uuid
+from datetime import datetime as dt
+from datetime import timedelta
 
+import pytz
+import requests
+from firebase_admin import auth, db, exceptions
 from flask import (
-    render_template,
-    redirect,
-    url_for,
+    abort,
     flash,
     get_flashed_messages,
-    send_file,
-    request,
-    abort,
     make_response,
+    redirect,
+    render_template,
+    request,
+    send_file,
     session,
+    url_for,
 )
-import pytz
-from firebase_admin import auth, db, exceptions
-import requests
 
-from app import app
 import forms
+from app import app
 
 TIMEZONE = "Asia/Colombo"
 
