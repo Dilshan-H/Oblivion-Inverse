@@ -1,4 +1,4 @@
-# pylint: disable=wildcard-import, unused-wildcard-import, wrong-import-position
+# pylint: disable=wildcard-import, unused-wildcard-import, wrong-import-position, import-error
 
 """
 Oblivion-Inverse - A Simple E-mail Tracking Solution.
@@ -14,10 +14,13 @@ used to open the e-mail.
 """
 
 import os
-from flask import Flask, request, redirect, url_for, flash, session
 
 import firebase_admin
-from firebase_admin import credentials, auth
+from dotenv import load_dotenv
+from firebase_admin import auth, credentials
+from flask import Flask, flash, redirect, request, session, url_for
+
+load_dotenv()
 
 cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(
@@ -61,6 +64,8 @@ def validate_session():
 # import routes after app initialized
 from routes import *
 
-
 if __name__ == "__main__":
-    app.run(debug=False)
+    if os.environ["FLASK_ENV"] == "development":
+        app.run(debug=True)
+    else:
+        app.run(debug=False)
