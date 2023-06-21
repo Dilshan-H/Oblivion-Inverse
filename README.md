@@ -1,5 +1,7 @@
 # **Oblivion<sup>-1</sup>** ~ A Simple E-mail Tracker
 
+🎯️ Oblivion-Inverse is a simple e-mail tracking solution which based on the usage of web beacons or tracking pixels.
+
 <!-- Shield Badges -->
 
 ![GitHub license](https://img.shields.io/github/license/Dilshan-H/Oblivion-Inverse?style=for-the-badge)
@@ -10,29 +12,27 @@
 ![GitHub stars](https://img.shields.io/github/stars/Dilshan-H/Oblivion-Inverse?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/Dilshan-H/Oblivion-Inverse?style=for-the-badge)
 
-# 🚀 Major upgrade is coming soon!
+# 📢 New Upgrade is Now Available!
 
-🔴 **If you are willing to use this project right now, you can use the current version from [v1 branch](https://github.com/Dilshan-H/Oblivion-Inverse/tree/v1). Since Heroku has discontinued the free tier, the project is needed to be migrated to a new platform. But you can use v1 on a self hosted environment or on Heroku paid tier.**
+🚀 **We have moved onto `Render` platform + Databases, Authentication is now handled using `Firebase`! This branch (`main`) contains the code for the latest stable release of this project now.**
+
+💻 **You can also use the initial version from [v1 branch](https://github.com/Dilshan-H/Oblivion-Inverse/tree/v1) which is ready to be deployed on Heroku Cloud Platform or on a self hosted environment.**
 
 🔴 **Several sections in this README needs to be updated with the new changes.**
 
-Here we have the list of features that are going to be implemented in the next major updates. If you are willing to contribute, you can [check available open issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues) or [open new issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new).
+🌟 Here we have a list of features that need to be implemented to enhance the overall experience. If you are willing to contribute, you can [check available open issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues) or [open new issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new).
 
 | Feature \| Task                                        | Status |
 | ------------------------------------------------------ | :----: |
 | 🔐 Authentication handling - **Firebase Auth**         |   ✅   |
 | 📋 Better database handling - **Firebase Realtime DB** |   ✅   |
-| 🏃 Migration to **Render**                             |   🚧   |
+| 🏃 Migration to **Render**                             |   ✅   |
 | 🕶️ Theme Management (**UI**)                           |   🚧   |
 | 🔎 Tracking link _Search_ functionality                |   🚧   |
 | 💻 **PWA** functionality                               |   🚧   |
 | 📖 Update Docs & Readme                                |   🚧   |
 
 <hr />
-
-🎯️ Oblivion-Inverse is a simple e-mail tracking solution which based on the usage of web beacons or tracking pixels.
-
-> A web beacon (web bug) is a technique used on web pages and emails to unobtrusively (usually invisibly) allow checking that a user has accessed some content. Web beacons are typically used by third parties to monitor the activity of users at a website for the purpose of web analytics or page tagging. They can also be used for email tracking. - Wikipedia
 
 ![banner](https://user-images.githubusercontent.com/77499497/163841581-eb792235-3f8d-4998-a430-c4b2ffeda036.png)
 
@@ -49,6 +49,10 @@ Here we have the list of features that are going to be implemented in the next m
 - [Contributing](#contributing)
 - [License & Copyrights](#license--copyrights)
 - [Disclaimer](#disclaimer)
+
+## What is a web beacon?
+
+> A web beacon (web bug) is a technique used on web pages and emails to unobtrusively (usually invisibly) allow checking that a user has accessed some content. Web beacons are typically used by third parties to monitor the activity of users at a website for the purpose of web analytics or page tagging. They can also be used for email tracking. - Wikipedia
 
 ## What can I achieve using this?
 
