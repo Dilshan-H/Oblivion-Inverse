@@ -1,4 +1,4 @@
-# pylint: disable=unused-import, missing-timeout, import-error
+# pylint: disable=unused-import, missing-timeout, import-error, no-value-for-parameter
 
 """
 Routes and views for the flask application.
@@ -266,3 +266,16 @@ def logout():
 
     flash("Successfully Logged Out! - See you soon...")
     return response
+
+
+@app.route("/apphealth")
+def app_health():
+    """App health check - Returns a 200 response"""
+    response = make_response("OK", 200)
+    return response
+
+
+@app.errorhandler(404)
+def page_not_found(error):  # pylint: disable=unused-argument
+    """Handle 404 errors by rendering a custom 404 page."""
+    return render_template("404.html"), 404
