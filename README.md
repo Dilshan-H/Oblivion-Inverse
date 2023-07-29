@@ -176,24 +176,13 @@ After that you can either test the application in your local machine or setup yo
 
 ### Testing/Using on your Local Machine | Network
 
-Before running the application, you have to set the following environment variables: (Just replace the values with your own and run the commands inside the activated virtual environment - No commas on Windows)
+First you have to set the following environment variables. Create a new file named `.env` in the root directory of the project and add the following lines to it. Replace the values with your own values.
 
-_Linux & macOS:_
-
-```bash
- export FLASK_ENV="development"
- export FIREBASE_API_KEY="Your-Firebase-API-Key"
- export FIREBASE_DB_URL="Your-Firebase-Database-URL"
- export SECRET_KEY="replace-this-text-with-a-suitable-key"
 ```
-
-_Windows:_
-
-```bash
- set FLASK_ENV=development
- set FIREBASE_API_KEY=Your-Firebase-API-Key
- set FIREBASE_DB_URL=Your-Firebase-Database-URL
- set SECRET_KEY=replace-this-text-with-a-suitable-key
+FIREBASE_API_KEY=Your-Firebase-API-Key
+FIREBASE_DB_URL=Your-Firebase-Database-URL
+SECRET_KEY=replace-this-text-with-a-suitable-key
+FLASK_ENV=development
 ```
 
 Then run the application using the following command:
@@ -202,14 +191,14 @@ Then run the application using the following command:
 flask run
 ```
 
-Navigate to `localhost:5000` in your browser.  
-If another program is already utilizing port 5000, `Address already in use` error will be displayed.
+If another program is already utilizing port 5000 (default port), `Address already in use` error will be displayed.
 If that happens you can specify a different port like this:
 
 ```bash
 flask run --port 5001
 ```
 
+Navigate to `localhost:<port_number>` (default: http://localhost:5000) in your browser.
 A login page will be displayed.  
 Input your newly created account's email & password and that's it!
 
