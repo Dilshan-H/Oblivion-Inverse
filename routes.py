@@ -10,6 +10,7 @@ Routes:
     - /login
     - /logout
     - /tracking_data/<utm_id>
+    - /apphealth
 """
 
 import os
@@ -102,6 +103,7 @@ def tracklist():
                 pass
             return render_template("track_list.html", trackingList=tracking_list)
     else:
+        app.logger.warning("/tracklist - No tracking records found!")
         flash("Sorry, No tracking records found! - Let's generate a one!")
         return redirect(url_for("index"), 303)
 
@@ -117,6 +119,7 @@ def track():
     try:
         utm_id = request.args["utm_id"]
     except KeyError:
+        app.logger.warning("/track - UTM ID argument is missing!")
         abort(400)
 
     FILENAME = "static/OI-pixel.gif"  # pylint: disable=invalid-name  # noqa
@@ -130,11 +133,11 @@ def track():
         try:
             all_hits[utm_id]
         except KeyError:
+            app.logger.warning("/track - User provided an invalid UTM ID!")
             abort(400)
 
         try:
             active_session_id = session["uid"]
-            print(active_session_id)
             ref_2 = db.reference(f"/MailTrackData/Users/{active_session_id}")
             user_data = ref_2.get()
             user_utm_ids = list(user_data.keys())
@@ -161,6 +164,7 @@ def track():
             )
 
     else:
+        app.logger.warning("/track - User provided an invalid UTM ID!")
         abort(400)
 
     return send_file(FILENAME, mimetype="image/gif", max_age=0)
@@ -181,6 +185,7 @@ def tracking_data(utm_id):
             "tracking_data.html", data=tracking_list, link_hits=link_hits, utm_id=utm_id
         )
 
+    app.logger.warning("/tracking-data - User provided an invalid UTM ID!")
     flash("Sorry, Not a valid UTM id!")
     return redirect(url_for("tracklist"), 303)
 
@@ -196,6 +201,7 @@ def login():
             flash(message="You're already logged in!")
             return redirect(url_for("index"), 303)
         except auth.RevokedSessionCookieError:
+            app.logger.warning("/login - Request denied due to revoked session cookie!")
             abort(
                 status=401,
                 description="Session cookie has been revoked."
@@ -234,8 +240,10 @@ def login():
                     secure=True,
                     samesite="Strict",
                 )
+                app.logger.info("/login - User logged in successfully!")
                 return response
 
+            app.logger.warning("/login - User provided invalid credentials!")
             flash("Invalid username or password!")
             return redirect(url_for("login"), 303)
 
@@ -244,6 +252,7 @@ def login():
             requests.exceptions.RequestException,
             exceptions.FirebaseError,
         ):
+            app.logger.error("/login - Unable to sign in user!")
             abort(
                 status=503,
                 description="Service temporarily unavailable, try again later.",
@@ -262,8 +271,10 @@ def logout():
         response = make_response(redirect(url_for("login"), 303))
         response.set_cookie("secure-session", "", expires=0)
     except auth.InvalidSessionCookieError:
+        app.logger.warning("/logout - Request denied due to invalid session cookie!")
         return redirect(url_for("login"), 303)
 
+    app.logger.info("/logout - User logged out successfully!")
     flash("Successfully Logged Out! - See you soon...")
     return response
 
@@ -271,6 +282,7 @@ def logout():
 @app.route("/apphealth")
 def app_health():
     """App health check - Returns a 200 response"""
+    app.logger.info("/apphealth - App health check successful!")
     response = make_response("OK", 200)
     return response
 
@@ -278,4 +290,5 @@ def app_health():
 @app.errorhandler(404)
 def page_not_found(error):  # pylint: disable=unused-argument
     """Handle 404 errors by rendering a custom 404 page."""
+    app.logger.warning("/404 - Invalid URL requested by user, redirecting to 404 page")
     return render_template("404.html"), 404
