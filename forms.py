@@ -1,10 +1,13 @@
+# pylint: disable=import-error
+
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, EmailField
 from wtforms.validators import DataRequired
 
 
 class GenerateTrackingLink(FlaskForm):
     email_title = StringField("Title", validators=[DataRequired()])
+    email_address = EmailField("Address", validators=[DataRequired()])
     submit = SubmitField("GENERATE")
 
 
