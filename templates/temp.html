@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block header %}
+<section class="hero is-fullheight-with-navbar">
+  <div class="hero-body">
+    <div class="column is-6 is-5-fullhd is-offset-1-fullhd">
+      <div class="section-header">
+        <h1 class="title is-spaced is-1">
+          Track your emails<span class="is-hidden-touch"><br /></span>
+          like a Hero!
+        </h1>
+        <h2 class="subtitle is-4">
+          An Open Source, simple E-mail Tracker. Track your messages using your
+          own platform...
+        </h2>
+        <div class="field is-grouped">
+          <div class="control">
+            <a class="button is-primary is-medium" href="#platform"
+              >How does it work?</a
+            >
+          </div>
+          <div class="control">
+            <a class="button is-light is-medium" href="/library"
+              >📚 Explore Library</a
+            >
+          </div>
+        </div>
+        <hr class="spacer is-1-5" />
+        <a
+          class="has-tint has-text-weight-semibold"
+          href="http://www.parents-choice.org/product.cfm?product_id=35555"
+          target="_blank"
+          ><i class="icon icon-award"></i
+          ><span>Parents' Choice Approved App</span></a
+        >
+      </div>
+    </div>
+    <div class="column is-6">
+      <div class="section-media">
+        <img
+          role="presentation"
+          src="{{ url_for('static', filename = 'hero.webp') }}"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock header %} {% block main %}
+<div class="column is-4 is-offset-4">
+  <h3 class="title" style="text-align: center">A Simple E-mail Tracker</h3>
+  <div class="box">
+    <form action="{{ url_for('login') }}" method="post">
+      {{ form.csrf_token }}
+      <div class="field">
+        <div class="control">
+          {{ form.username(class="input is-primary is-rounded",
+          placeholder="Input Username", maxlength=15, autofocus="") }}
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          {{ form.password(class="input is-primary is-rounded",
+          placeholder="Input Password", maxlength=25) }}
+        </div>
+      </div>
+      {{ form.login(class="button is-block is-info is-large is-fullwidth") }}
+    </form>
+  </div>
+</div>
+{% endblock main%}

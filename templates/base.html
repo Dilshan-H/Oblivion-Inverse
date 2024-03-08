@@ -19,7 +19,15 @@
     />
     <link
       rel="stylesheet"
+      href="{{ url_for('static', filename = 'base.css') }}"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap"
+      rel="stylesheet"
     />
 
     <title>Oblivion-Inverse - Simple E-Mail Tracking Solution</title>
@@ -27,7 +35,27 @@
 
   <body>
     <div class="Header">
+      <!-- <nav class="navbar">
+        <div class="container">
+          <div id="navMenu" class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item"> Home </a>
+              <a class="navbar-item"> Documentation </a>
+            </div>
+
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button is-dark">Github</a>
+                  <a class="button is-link">Download</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav> -->
       <nav
+        id="navbar-main"
         class="navbar has-shadow"
         role="navigation"
         aria-label="main navigation"
@@ -55,15 +83,11 @@
         <div id="navbarBasic" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item" href="{{ url_for('tracklist') }}">
-              <span id="t-1" class="navbar-item" style="margin: 5px 0px 0px">
-                Tracking List
-              </span>
+              <span id="t-1"> Tracking List </span>
             </a>
 
             <a class="navbar-item" href="{{ url_for('logout') }}">
-              <span id="t-2" class="navbar-item" style="margin: 5px 0px 0px">
-                Log out
-              </span>
+              <span id="t-2"> Log out </span>
             </a>
           </div>
 
@@ -95,18 +119,31 @@
           </div>
         </div>
       </nav>
-    </div>
 
-    {% with messages = get_flashed_messages() %} {% if messages %} {% for
-    message in messages %}
-    <div class="column is-4 is-offset-4">
-      <div class="notification is-warning">
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+
+      <div class="notification is-warning" style="margin-bottom: 5px">
         <p style="text-align: center">
           <strong> {{ message }} </strong>
         </p>
       </div>
+
+      {% endfor %} {% endif %} {% endwith %} {% block header %} {% endblock %}
     </div>
-    {% endfor %} {% endif %} {% endwith %} {% block main %} {% endblock %}
+
+    {% block main %} {% endblock %}
+
+    <footer class="footer mt-auto" style="padding: 30px">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Oblivion-Inverse</strong> Made with ❤️ by
+          <a href="https://github.com/dilshan-h">Dilshan-H</a>. The source code
+          is licensed under
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+        </p>
+      </div>
+    </footer>
 
     <script type="text/javascript">
       function managePane() {
@@ -116,18 +153,5 @@
         nav.classList.toggle("is-active");
       }
     </script>
-
-    <style>
-      html {
-        background-color: #c7f8ca;
-      }
-      .navbar {
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        margin-left: 5px;
-        margin-right: 5px;
-        overflow: hidden;
-      }
-    </style>
   </body>
 </html>

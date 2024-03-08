@@ -1,41 +1,19 @@
 {% extends "base.html" %} {% block main %}
 
 <div class="container">
-  <div id="basicInfo" class="card" style="margin: 10px">
+  <div id="track-cards" class="card" style="margin: 10px">
     <header class="card-header">
       <p class="card-header-title">{{ data['MailTitle'] }}</p>
     </header>
 
     <div class="card-body" style="padding: 15px">
       <p>UTM ID:</p>
-      <span>
+      <span id="copyIcon" title="Copy Tracking Link" onclick="copyLink(this)" ;>
         {{ utm_id }}
-        <div
-          id="copyIcon"
-          class="icon"
-          title="Copy Tracking Link"
-          onclick="copyLink(this);"
-        >
-          <svg
-            id="copyIconSVG"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#000000"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-            ></path>
-            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-          </svg>
-        </div>
       </span>
-
+      <div id="inline-notification" class="mt-1 mb-2">
+        ✔ Link copied to clipboard
+      </div>
       <p class="help">
         You can manipulate email content to include this tracking pixel.<br />
         <code
@@ -43,11 +21,14 @@
           utm_id }}"/></code
         >
       </p>
-      <p></p>
 
       <p>Tracking Pixel:</p>
       <div class="pixel-container">
-        <img id="OIPixel" src="{{ url_for('track') ~'?utm_id='~ utm_id }}" />
+        <img
+          id="OIPixel"
+          title="Drag me!"
+          src="{{ url_for('track') ~'?utm_id='~ utm_id }}"
+        />
         <p class="help">
           Drag & drop above square to your email - DO NOT copy/paste!<br />
           If you cannot see such square with a red outline, please
@@ -65,7 +46,7 @@
     </div>
   </div>
 
-  <div id="accessInfo" class="card" style="margin: 10px">
+  <div id="track-cards" class="card" style="margin: 10px">
     <header class="card-header">
       <p class="card-header-title">Access Info</p>
     </header>
@@ -103,7 +84,7 @@
   #copyIcon {
     display: inline;
     color: rgb(81, 176, 46);
-    cursor: pointer;
+    cursor: copy;
   }
   #OIPixel {
     border: 2px dotted red;
@@ -112,17 +93,26 @@
     cursor: grab;
   }
   hr {
-    background-color: black;
+    background-color: rgb(31, 110, 15);
+  }
+  #inline-notification {
+    display: none;
+    max-width: fit-content;
+    border: 1px solid green;
+    padding: 5px;
+    color: rgb(255, 0, 0);
+    border-radius: 5px;
   }
 </style>
 
 <script>
   function copyLink(el) {
-    // change svg color and fade back to color none
-    el.children[0].setAttribute("fill", "green");
+    // show inline notification
+    var inlineNotification = document.getElementById("inline-notification");
+    inlineNotification.style.display = "block";
     setTimeout(() => {
-      el.children[0].setAttribute("fill", "none");
-    }, 1500);
+      inlineNotification.style.display = "none";
+    }, 800);
     navigator.clipboard.writeText(
       "{{ url_for('track') }}" + "?utm_id=" + "{{ utm_id }}"
     );
