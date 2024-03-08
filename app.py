@@ -22,23 +22,44 @@ from flask import Flask, flash, redirect, request, session, url_for
 
 load_dotenv()
 
-cred = credentials.Certificate("credentials.json")
+app = Flask(__name__, static_url_path="/static", static_folder="static")
+
+app.config["DEBUG"] = os.environ["FLASK_DEBUG"]
+app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
+
+try:
+    cred = credentials.Certificate("credentials.json")
+except FileNotFoundError:
+    app.logger.warning("Firebase credentials not found. Trying environment variables.")
+    cred = credentials.Certificate(
+        {
+            "type": os.environ["FIREBASE_TYPE"],
+            "project_id": os.environ["FIREBASE_PROJECT_ID"],
+            "private_key_id": os.environ["FIREBASE_PRIVATE_KEY_ID"],
+            "private_key": os.environ["FIREBASE_PRIVATE_KEY"].replace("\\n", "\n"),
+            "client_email": os.environ["FIREBASE_CLIENT_EMAIL"],
+            "client_id": os.environ["FIREBASE_CLIENT_ID"],
+            "auth_uri": os.environ["FIREBASE_AUTH_URI"],
+            "token_uri": os.environ["FIREBASE_TOKEN_URI"],
+            "auth_provider_x509_cert_url": os.environ[
+                "FIREBASE_AUTH_PROVIDER_X509_CERT_URL"
+            ],
+            "client_x509_cert_url": os.environ["FIREBASE_CLIENT_X509_CERT_URL"],
+            "universe_domain": os.environ["FIREBASE_UNIVERSE_DOMAIN"],
+        }
+    )
+    app.logger.info("Firebase credentials loaded from environment variables.")
 firebase_admin.initialize_app(
     cred,
     {"databaseURL": os.environ["FIREBASE_DB_URL"]},
 )
-
-app = Flask(__name__, static_url_path="/static", static_folder="static")
-
-app.config["DEBUG"] = False
-app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 
 
 @app.before_request
 def validate_session():
     """Validate each request with session cookie and firebase auth"""
     # check if user is visiting login page or track page
-    if request.path in ["/login", "/track"]:
+    if request.path in ["/login", "/track"] or request.path.startswith("/static/"):
         return None
 
     # read session cookie
@@ -53,10 +74,12 @@ def validate_session():
         return None
     except auth.ExpiredSessionCookieError:
         # Session cookie has been revoked. Force user to login.
+        app.logger.warning("Expired session cookie. Redirecting to login page.")
         flash("Session expired. Please login again.")
         return redirect(url_for("login"))
     except auth.InvalidSessionCookieError:
         # Session cookie is invalid, expired or revoked. Force user to login.
+        app.logger.warning("Invalid session cookie. Redirecting to login page.")
         flash("Please login to continue...")
         return redirect(url_for("login"), 303)
 
