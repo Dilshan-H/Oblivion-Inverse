@@ -99,7 +99,6 @@ def tracklist():
             except KeyError:
                 pass
 
-        # --------------------- Test Code ---------------------
         # Convert string dates to datetime objects
         for item in tracking_list.values():
             item["GeneratedOn"] = dt.strptime(
@@ -125,8 +124,6 @@ def tracklist():
         # Sort months in descending order by their numeric representations
         sorted_tracking = dict(sorted(sorted_tracking.items(), reverse=True))
 
-        # print("----------------Sorted Tracking: ", sorted_tracking)
-
         month_names = [
             "",
             "January",
@@ -149,31 +146,6 @@ def tracklist():
                 month_names[month]: items for month, items in months.items()
             }
 
-        # for year, months in sorted_tracking.items():
-        #     for month, items in months.items():
-        #         print(f"{year}, {dt(month=month, day=1, year=year).strftime('%B')}")
-        #         for item in items:
-        #             print(f"  {item[0]}: {item[1]}")
-
-        # --------------------- End Test Code ---------------------
-
-        # # sort the tracking list by generated on date
-        # sorted_tracking_list = sorted(
-        #     tracking_list.items(), key=lambda p: p[1]["GeneratedOn"]
-        # )
-        # sorted_tracking_list_dict = {k: v for k, v in sorted_tracking_list}
-
-        # tracking_list = sorted_tracking_list_dict
-
-        # if tracking_list:
-        #     # get all link hits for the user
-        #     ref_2 = db.reference("/MailTrackData/LinkHits/")
-        #     link_hits = ref_2.get()
-        #     for utm_id in tracking_list:
-        #         try:
-        #             tracking_list[utm_id]["Hits"] = link_hits[utm_id]
-        #         except KeyError:
-        #             pass
         return render_template(
             "track_list.html",
             tracking_list=sorted_tracking_with_months,
