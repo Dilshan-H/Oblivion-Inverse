@@ -1,5 +1,8 @@
 {% extends "base.html" %} {% block main %}
-<div class="columns is-desktop is-vcentered">
+<div
+  class="columns is-desktop is-vcentered"
+  style="min-height: calc(100vh - 130px)"
+>
   <div class="column m-5">
     <div class="container is-fullheight">
       <div class="box is-centered" id="generate-tracks-box">
@@ -38,9 +41,30 @@
         </form>
       </div>
     </div>
+    <div class="is-fullwidth has-text-centered">
+      <a
+        href="https://github.com/Dilshan-H/Oblivion-Inverse"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          id="support-banner"
+          src="{{ url_for('static', filename = 'support-banner.png') }}"
+          draggable="false"
+      /></a>
+    </div>
   </div>
-  <div class="column">
-    <img id="hero-img" src="{{ url_for('static', filename = 'hero.webp') }}" />
+  <div class="column has-text-centered">
+    <img
+      id="steps-img"
+      src="{{ url_for('static', filename = 'steps.png') }}"
+      draggable="false"
+    />
   </div>
 </div>
+<img
+  id="side-cover-image"
+  src="{{ url_for('static', filename = 'side-cover.png') }}"
+  draggable="false"
+/>
 {% endblock %}

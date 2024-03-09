@@ -1,3 +1,7 @@
+/* This file is used to style the base layout of the website */
+
+/*------------------ General ------------------*/
+
 .hero-body,
 body {
   background: rgb(233, 253, 220);
@@ -10,9 +14,28 @@ body {
 
 #hero-img {
   transition: all 2s ease-in-out;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 #hero-img:hover {
   transform: scale(1.05);
+}
+
+#side-cover-image {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  height: 100vh;
+  z-index: 0;
+  opacity: 0.5;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 body,
@@ -37,10 +60,40 @@ textarea {
   font-size: 2rem;
 }
 
+#support-banner {
+  position: relative;
+  width: 50%;
+  z-index: 1;
+}
+
+#support-banner:hover {
+  transform: scale(1.05);
+}
+
+#steps-img {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#generate-tracks-box {
+  position: relative;
+  z-index: 1;
+}
+
 #list-box-1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#list-box-2 {
+  min-height: calc(100vh - 200px);
 }
 
 .record-holder {
@@ -61,6 +114,11 @@ textarea {
   background-color: #333333;
 }
 
+.footer {
+  z-index: 2;
+  position: relative;
+}
+
 /*------------------ Viewport Sizes ------------------*/
 
 @media (max-width: 800px) {
@@ -70,27 +128,13 @@ textarea {
   }
 }
 
-@media (max-width: 500px) {
-  #hero-img {
-  }
-}
-
-/* html,
-body {
-  height: 100vh;
-} */
-
 /*------------------ dark theme ------------------*/
 
 @media (prefers-color-scheme: dark) {
   .hero-body,
   body {
-    background: rgb(70, 68, 68);
-    background: linear-gradient(
-      90deg,
-      rgb(87, 107, 84) 0%,
-      rgb(70, 129, 73) 100%
-    );
+    background: #464444;
+    background: linear-gradient(250deg, #000000, #444444);
   }
 
   body {
@@ -160,7 +204,7 @@ body {
 
   /*------------------ Create Page ------------------*/
   #generate-tracks-box {
-    background-color: #00000091;
+    background-color: #1a1a1af2;
     color: white;
   }
   #generate-tracks-box .label {
@@ -200,20 +244,3 @@ body {
     color: white;
   }
 }
-
-/* @media (max-width: $tablet) {
-        .columns.is-reversed-mobile {
-          flex-direction: column-reverse;
-          display: flex;
-        }
-      } */
-/* html {
-        background-color: #c7f8ca;
-      }
-      .navbar {
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        margin-left: 5px;
-        margin-right: 5px;
-        overflow: hidden;
-      } */

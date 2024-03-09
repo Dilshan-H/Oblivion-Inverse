@@ -2,11 +2,11 @@
 
 <div class="container">
   <div id="track-cards" class="card" style="margin: 10px">
-    <header class="card-header">
+    <header class="card-header p-2">
       <p class="card-header-title">{{ data['MailTitle'] }}</p>
     </header>
 
-    <div class="card-body" style="padding: 15px">
+    <div class="card-body" style="padding: 5px 20px 15px">
       <p>UTM ID:</p>
       <span id="copyIcon" title="Copy Tracking Link" onclick="copyLink(this)" ;>
         {{ utm_id }}
@@ -46,14 +46,14 @@
     </div>
   </div>
 
-  <div id="track-cards" class="card" style="margin: 10px">
-    <header class="card-header">
+  <div id="track-cards" class="card is-fullheight" style="margin: 10px">
+    <header class="card-header p-2">
       <p class="card-header-title">Access Info</p>
     </header>
 
-    <div class="card-body" style="padding: 15px">
+    <div class="card-body" style="padding: 15px; min-height: 40vh">
       {% if link_hits %} {% for item in link_hits %}
-      <div class="block">
+      <div class="block p-2">
         <p>Timestamp:</p>
         <p>{{ link_hits[item]['AccessedOn'] }}</p>
 
@@ -67,7 +67,8 @@
 
       {% endfor %} {% else %}
 
-      <div class="block">
+      <div class="block mt-6 has-text-centered">
+        <span style="font-size: 50px">⚡</span>
         <p><b>Nothing to display yet...</b></p>
       </div>
       {% endif %}
@@ -80,6 +81,9 @@
     margin-top: 10px;
     margin-bottom: 2px;
     font-weight: bold;
+  }
+  .card-body .block:hover {
+    background-color: #5f5f5f2f;
   }
   #copyIcon {
     display: inline;
