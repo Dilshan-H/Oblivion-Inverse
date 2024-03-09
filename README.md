@@ -33,7 +33,7 @@
 | 📋 Better database handling - **Firebase Realtime DB** |   ✅   |
 | 🏃 Migration to **Cyclic**                             |   ✅   |
 | 🕶️ Theme Management (**UI**)                           |   ✅   |
-| 📱 Enhance interface (**UI**)                          |   🚧   |
+| 📱 Enhance interface (**UI**)                          |   ✅   |
 | 🔎 Tracking link _Search_ functionality                |   🚧   |
 | ▤ Tracking link _Filter_ functionality                 |   🚧   |
 | 💻 **PWA** functionality                               |   🚧   |
