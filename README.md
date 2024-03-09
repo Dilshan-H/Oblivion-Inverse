@@ -12,27 +12,18 @@
 ![GitHub stars](https://img.shields.io/github/stars/Dilshan-H/Oblivion-Inverse?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/Dilshan-H/Oblivion-Inverse?style=for-the-badge)
 
-# 📢 New Upgrade is Now Available!
+# 📢 v2 - Render + Firebase Integration
 
-🚀 **We have moved onto `Render` platform + Databases, Authentication is now handled using `Firebase`! This branch (`main`) contains the code for the latest stable release of this project now.**
+🔴 **NOTE**: This is the readme file for the V2 branch. This branch contains the source code for the second version of the project. If you're looking for the latest version, please visit the [main](https://github.com/Dilshan-H/Oblivion-Inverse/) branch.
 
-💻 **You can also use the initial version from [v1 branch](https://github.com/Dilshan-H/Oblivion-Inverse/tree/v1) which is ready to be deployed on Heroku Cloud Platform or on a self hosted environment.**
+⚠️ **WARNING**: This version is **no longer actively maintained**. We are moving onto Cyclic, Firebase platforms with the latest version of the project. This version is suitable for those who are willing to deploy on Render platform or willing to host on their own server with Firebase Realtime Database and Firebase Authentication.
 
-🔴 **Several sections in this README needs to be updated with the new changes.**
+You can also use the initial versions from following branches:
 
-🌟 Here we have a list of features that need to be implemented to enhance the overall experience. If you are willing to contribute, you can [check available open issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues) or [open new issues](https://github.com/Dilshan-H/Oblivion-Inverse/issues/new).
+- v1 branch: Ready to be deployed on Heroku Cloud Platform or on a self hosted environment with a SQL database.
+- v2 branch: Ready to be deployed on Render Cloud Platform or on a self hosted environment with Firebase Realtime Database and Firebase Authentication.
 
-| Feature \| Task                                        | Status |
-| ------------------------------------------------------ | :----: |
-| 🔐 Authentication handling - **Firebase Auth**         |   ✅   |
-| 📋 Better database handling - **Firebase Realtime DB** |   ✅   |
-| 🏃 Migration to **Render**                             |   ✅   |
-| 🕶️ Theme Management (**UI**)                           |   🚧   |
-| 🔎 Tracking link _Search_ functionality                |   🚧   |
-| 💻 **PWA** functionality                               |   🚧   |
-| 📖 Update Docs & Readme                                |   🚧   |
-
-<hr />
+<hr/>
 
 ![banner](https://user-images.githubusercontent.com/77499497/163841581-eb792235-3f8d-4998-a430-c4b2ffeda036.png)
 
@@ -146,27 +137,7 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 
 8. Now you have to create a new Firebase Authentication user. To do that, you have to go to the `Authentication` tab in the Firebase Console. Then click on the `Set up sign-in method` button. Then click on the `Email/Password` tab and enable it. Then click on the `Users` tab and click on the `Add User` button. Enter the email and password of the user account you want to create. Then click on the `Add User` button.
 
-9. Now you have to create a new Firebase Realtime Database. To do that, you have to go to the `Database` tab in the Firebase Console. Then click on the `Create Database` button. Then select the database location and click on the `Next` button. Then change the rules as follows and click on the `Enable` button:
-
-   ```json
-   {
-     "rules": {
-       "MailTrackData": {
-         "Users": {
-           "$uid": {
-             ".read": "auth !== null && auth.uid === $uid",
-             ".write": "auth !== null && auth.uid === $uid"
-           }
-         },
-
-         "LinkHits": {
-           ".read": false,
-           ".write": true
-         }
-       }
-     }
-   }
-   ```
+9. Now you have to create a new Firebase Realtime Database. To do that, you have to go to the `Database` tab in the Firebase Console. Then click on the `Create Database` button. Then select the database location and click on the `Next` button.
 
 10. Now go to project settings again and under the **General** tab you can find the `Web API Key`. And also,you are able to find the `Database URL` under the **SDK setup and configuration** tab there.  
     (Ex: `databaseURL: "https://your-app-default-rtdb.asia-southeast1.firebasedatabase.app"`)  
