@@ -1,43 +1,126 @@
 {% extends "base.html" %} {% block main %}
 
-<div class="container" style="margin-top: 15px">
-  {% for item in trackingList %}
-  <a href="{{ url_for('tracking_data', utm_id=item) }}">
-    <div id="trackCards" class="card">
-      <header class="card-header">
-        <p class="card-header-title">{{ trackingList[item]['MailTitle'] }}</p>
-      </header>
+<div id="list-box-1" class="box m-4">
+  <p class="title is-4">
+    {{'Search Results' if search_mode else 'Tracking List'}}
+  </p>
+  <div class="filter-container">
+    <a
+      href="{{ url_for('tracklist') }}"
+      class="button is-primary is-outlined m-1"
+    >
+      <span class="icon is-small">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M3 9H21M7 3V5M17 3V5M6 12H8M11 12H13M16 12H18M6 15H8M11 15H13M16 15H18M6 18H8M11 18H13M16 18H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
+              stroke="#7c7171"
+              stroke-width="2"
+              stroke-linecap="round"
+            ></path>
+          </g>
+        </svg>
+      </span>
+      <span>Calendar</span>
+    </a>
+    <a
+      href="{{ url_for('tracklist', year=2021) }}"
+      class="button is-primary is-outlined m-1 mr-3"
+    >
+      <span class="icon is-small">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM16 12V13.5C16 14.8807 17.1193 16 18.5 16V16C19.8807 16 21 14.8807 21 13.5V12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21H16"
+              stroke="#7c7171"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+      </span>
 
-      <div class="card-body" style="padding: 15px">
-        <h3>{{ item }}</h3>
-        <p style="text-decoration: underline">Added on:</p>
-        <p>{{ trackingList[item]['GeneratedOn'] }}</p>
-        {% if trackingList[item]['Hits'] %}
-        <p>
-          Access Count:
-          <span class="tag is-light is-success is-medium"
-            >{{ trackingList[item]['Hits']|length }}</span
-          >
-        </p>
-        {% else %}
-        <span class="tag is-warning is-rounded">No Hits!</span>
-        {% endif %}
+      <span>Email</span>
+    </a>
+    <form action="{{ url_for('tracklist') }}" method="post">
+      <div class="field has-addons">
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Search by Mail Title"
+            name="search"
+          />
+        </div>
+        <div class="control">
+          <button class="button is-primary" type="submit">Search</button>
+        </div>
       </div>
-    </div>
-  </a>
-  {% endfor %}
+    </form>
+  </div>
+</div>
+
+<div id="list-box-2" class="box m-4">
+  <!-- TODO: if no records -->
+  {% if not tracking_list %}
+  <div class="notification is-warning">
+    <p>No records found!</p>
+  </div>
+  {% endif %}
+  
+  {% for year, months in tracking_list.items() %} 
+  {% for month, items in months.items() %}
+  <div id="date-divider" class="divider m-3">{{ month }} - {{year}}</div>
+
+  <div class="record-holder">
+    {% for item in items %}
+    <a href="{{ url_for('tracking_data', utm_id=item[0]) }}">
+      <div id="track-cards" class="card m-3">
+        <header class="card-header">
+          <p class="card-header-title">{{item[1]["MailTitle"]}}</p>
+        </header>
+
+        <div class="card-body" style="padding: 15px">
+          <p>{{item[1]["MailAddress"]}}</p>
+          <p style="text-decoration: underline">Added on:</p>
+          <p>{{item[1]["GeneratedOn"].strftime('%Y-%m-%d %I:%M:%S %p %z')}}</p>
+          {% if item[1]["Hits"] > 0 %}
+          <p>
+            Access Count:
+            <span class="tag is-light is-success is-rounded"
+              >{{item[1]["Hits"]}}</span
+            >
+          </p>
+          {% else %}
+          <p>
+            Access Count:
+            <span class="tag is-warning is-rounded">No Hits!</span>
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+
+    {% endfor %}
+  </div>
+  {% endfor %} {% endfor %}
 </div>
 
 <style>
-  .container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-  }
-  #trackCards {
-    margin: 10px;
-  }
-  #trackCards:hover {
+  #track-cards:hover {
     box-shadow: 0px 0px 15px 5px rgba(8, 17, 6, 0.26);
   }
 </style>

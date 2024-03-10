@@ -15,12 +15,14 @@ Routes:
 
 import os
 import uuid
+from collections import defaultdict
 from datetime import datetime as dt
 from datetime import timedelta
 
 import pytz
 import requests
 from firebase_admin import auth, db, exceptions
+from dotenv import load_dotenv
 from flask import (
     abort,
     flash,
@@ -37,7 +39,9 @@ from flask import (
 import forms
 from app import app
 
-TIMEZONE = "Asia/Colombo"
+load_dotenv()
+
+TIMEZONE = os.environ["TIMEZONE"]
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -57,6 +61,7 @@ def index():
         ref_1.child(str(utm_id)).set(
             {
                 "MailTitle": form.email_title.data,
+                "MailAddress": form.email_address.data,
                 "GeneratedOn": generated_on,
             }
         )
@@ -84,24 +89,68 @@ def tracklist():
     ref_1 = db.reference(f"/MailTrackData/Users/{session['uid']}")
     tracking_list = ref_1.get()
 
-    # sort the tracking list by generated on date
-    sorted_tracking_list = sorted(
-        tracking_list.items(), key=lambda p: p[1]["GeneratedOn"]
-    )
-    sorted_tracking_list_dict = {k: v for k, v in sorted_tracking_list}
-
-    tracking_list = sorted_tracking_list_dict
-
     if tracking_list:
         # get all link hits for the user
         ref_2 = db.reference("/MailTrackData/LinkHits/")
         link_hits = ref_2.get()
         for utm_id in tracking_list:
             try:
-                tracking_list[utm_id]["Hits"] = link_hits[utm_id]
+                tracking_list[utm_id]["Hits"] = len(link_hits[utm_id])
             except KeyError:
                 pass
-            return render_template("track_list.html", trackingList=tracking_list)
+
+        # Convert string dates to datetime objects
+        for item in tracking_list.values():
+            item["GeneratedOn"] = dt.strptime(
+                item["GeneratedOn"], "%Y-%m-%d %H:%M:%S.%f%z"
+            )
+
+        # Create a defaultdict to store items by year and month
+        sorted_tracking = defaultdict(lambda: defaultdict(list))
+
+        # Group items by year and month
+        for key, value in tracking_list.items():
+            year = value["GeneratedOn"].year
+            month = value["GeneratedOn"].month
+            sorted_tracking[year][month].append((key, value))
+
+        # Sort items within each month by GeneratedOn in descending order
+        for year, months in sorted_tracking.items():
+            for month, items in months.items():
+                sorted_tracking[year][month] = sorted(
+                    items, key=lambda x: x[1]["GeneratedOn"], reverse=True
+                )
+
+        # Sort months in descending order by their numeric representations
+        sorted_tracking = dict(sorted(sorted_tracking.items(), reverse=True))
+
+        month_names = [
+            "",
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ]
+
+        sorted_tracking_with_months = {}
+        for year, months in sorted_tracking.items():
+            sorted_tracking_with_months[year] = {
+                month_names[month]: items for month, items in months.items()
+            }
+
+        return render_template(
+            "track_list.html",
+            tracking_list=sorted_tracking_with_months,
+            search_mode=False,
+        )
     else:
         app.logger.warning("/tracklist - No tracking records found!")
         flash("Sorry, No tracking records found! - Let's generate a one!")

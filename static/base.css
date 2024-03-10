@@ -1,0 +1,246 @@
+/* This file is used to style the base layout of the website */
+
+/*------------------ General ------------------*/
+
+.hero-body,
+body {
+  background: rgb(233, 253, 220);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(207, 247, 161, 1) 100%
+  );
+}
+
+#hero-img {
+  transition: all 2s ease-in-out;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+#hero-img:hover {
+  transform: scale(1.05);
+}
+
+#side-cover-image {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  height: 100vh;
+  z-index: 0;
+  opacity: 0.5;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Urbanist", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial",
+    sans-serif;
+}
+
+.title {
+  margin-bottom: 0px !important;
+}
+
+#login-box input {
+  font-size: 1.5rem;
+}
+
+#password {
+  font-size: 2rem;
+}
+
+#support-banner {
+  position: relative;
+  width: 50%;
+  z-index: 1;
+}
+
+#support-banner:hover {
+  transform: scale(1.05);
+}
+
+#steps-img {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#generate-tracks-box {
+  position: relative;
+  z-index: 1;
+}
+
+#list-box-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#list-box-2 {
+  min-height: calc(100vh - 200px);
+}
+
+.record-holder {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
+}
+#date-divider {
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  background-color: #333333;
+}
+
+.footer {
+  z-index: 2;
+  position: relative;
+}
+
+/*------------------ Viewport Sizes ------------------*/
+
+@media (max-width: 800px) {
+  .custom-columns {
+    flex-direction: column-reverse;
+    display: flex;
+  }
+}
+
+/*------------------ dark theme ------------------*/
+
+@media (prefers-color-scheme: dark) {
+  .hero-body,
+  body {
+    background: #464444;
+    background: linear-gradient(250deg, #000000, #444444);
+  }
+
+  body {
+    background-color: #000000ad;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    background-color: #333333 !important;
+    color: white !important;
+  }
+
+  input::placeholder {
+    color: white !important;
+  }
+
+  .title {
+    color: white !important;
+  }
+  .subtitle {
+    color: white !important;
+  }
+
+  #login-box {
+    background-color: #33333352;
+  }
+
+  /*------------------ NavBar ------------------*/
+  #navbar-main {
+    background-color: #333;
+    box-shadow: 2px 0 0 #0000008a;
+    padding: 5px 5px 0px 5px;
+  }
+  .navbar-burger {
+    color: white !important;
+  }
+  #navbarBasic {
+    background-color: #333;
+    box-shadow: 2px 0 0 #0000008a;
+  }
+  .navbar-item {
+    color: white !important;
+  }
+  .navbar-item:focus {
+    color: #333 !important;
+  }
+  .navbar-item:hover {
+    color: #333 !important;
+  }
+
+  .navbar-brand .title {
+    color: white !important;
+  }
+  .navbar-brand .title:hover {
+    color: #c7ff60 !important;
+  }
+
+  /*------------------ Footer ------------------*/
+  .footer {
+    background-color: #333 !important;
+    color: white !important;
+  }
+  .footer a {
+    color: #c7ff60 !important;
+  }
+
+  /*------------------ Create Page ------------------*/
+  #generate-tracks-box {
+    background-color: #1a1a1af2;
+    color: white;
+  }
+  #generate-tracks-box .label {
+    color: white;
+  }
+
+  /*------------------ Tracklist ------------------*/
+  #track-cards {
+    background-color: #151515d6;
+  }
+  #track-cards p {
+    color: white;
+  }
+  #track-cards .card-body {
+    background-color: #00000065;
+  }
+
+  #list-box-1,
+  #list-box-2 {
+    background-color: #252525 !important;
+  }
+
+  #list-box-1 {
+    .icon {
+      color: white;
+    }
+  }
+
+  #date-divider {
+    color: white;
+    background-color: #333333;
+  }
+
+  /*------------------ Tracking Record Page ------------------*/
+  #record-box {
+    background-color: #252525 !important;
+    color: white;
+  }
+}
