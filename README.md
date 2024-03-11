@@ -2,6 +2,9 @@
 
 🎯️ Oblivion-Inverse is a simple e-mail tracking solution which based on the usage of web beacons or tracking pixels.
 
+![Oblivion-Inverse Open Source Email Tracker - Cover](https://github.com/Dilshan-H/Oblivion-Inverse/assets/77499497/b0a8d0d8-386b-41af-a61c-afa59ed10629)
+
+
 <!-- Shield Badges -->
 
 ![GitHub license](https://img.shields.io/github/license/Dilshan-H/Oblivion-Inverse?style=for-the-badge)
@@ -30,10 +33,10 @@
   - [Basic Requirements](#basic-requirements)
   - [Installation](#installation)
   - [Testing/Using on your Local Machine | Network](#testingusing-on-your-local-machine--network)
-  - [Deploying on Heroku Cloud Platform](#deploying-on-heroku-cloud-platform)
+  - [Deploying on Cyclic](#deploying-to-cyclic)
 - [Steps to create a tracking link for your email](#steps-to-create-a-tracking-link-for-your-email)
 - [How to use a Geo Location API](#how-to-use-a-geo-location-api)
-- [Special note about G-Mail](#special-note-about-g-mail)
+- [Special note about some email services](#special-note-about-g-mail--several-other-email-clients)
 - [Why not using cookies for tracking?](#why-not-using-cookies-for-tracking)
 - [Contributing](#contributing)
 - [License & Copyrights](#license--copyrights)
@@ -55,6 +58,12 @@ Basically using this pixel tracking method you can obtain vast amount of informa
 - ✅️ Additionally, you can use a Geo Location API to obtain information such as _approximate location, country, ISP ( Internet Service Provider), whether the user is using a VPN/Tor and so on..._ ) [Read how to use a Geo Location API section](#how-to-use-a-geo-location-api)
 
 ## Screenshots
+
+|                                                    **Login Screen**                                                   |                                                   **Add New Track Record**                                                  |
+|:---------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
+| ![Login Screen](https://github.com/Dilshan-H/Oblivion-Inverse/assets/77499497/96b18ddc-330a-4381-80d2-8c719723d3d4)   | ![Create Tracking Link](https://github.com/Dilshan-H/Oblivion-Inverse/assets/77499497/99b13295-d8f2-4f75-816c-8a4e369b354a) |
+|                                                   **Link Dashboard**                                                  |                                                      **Tracking Info**                                                      |
+| ![Link Dashboard](https://github.com/Dilshan-H/Oblivion-Inverse/assets/77499497/627f50b3-96c5-4c49-b53e-f2491ad27ee8) | ![Tracking Info](https://github.com/Dilshan-H/Oblivion-Inverse/assets/77499497/5bbf102d-2686-48ef-a1db-c05a78ef492c)        |
 
 ## Setup & Usage
 
