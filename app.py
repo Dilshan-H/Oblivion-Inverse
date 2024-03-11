@@ -30,7 +30,9 @@ app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 try:
     cred = credentials.Certificate("credentials.json")
 except FileNotFoundError:
-    app.logger.warning("Firebase credentials not found. Trying environment variables.")
+    app.logger.warning(
+        "Firebase credentials file not found. Trying environment variables."
+    )
     cred = credentials.Certificate(
         {
             "type": os.environ["FIREBASE_TYPE"],
@@ -48,11 +50,25 @@ except FileNotFoundError:
             "universe_domain": os.environ["FIREBASE_UNIVERSE_DOMAIN"],
         }
     )
+
+    # Temp Tests
+    print("--------running--------")
+    print(os.environ["FIREBASE_TYPE"])
+    print(os.environ["FIREBASE_PROJECT_ID"][3:5])
+    print(os.environ["FIREBASE_PRIVATE_KEY_ID"][5:10])
+    print(os.environ["FIREBASE_PRIVATE_KEY"][50:300])
+    # End Temp Tests
+
     app.logger.info("Firebase credentials loaded from environment variables.")
-firebase_admin.initialize_app(
-    cred,
-    {"databaseURL": os.environ["FIREBASE_DB_URL"]},
-)
+
+try:
+    active_app = firebase_admin.get_app()
+    print(firebase_admin.get_app())
+except ValueError:
+    firebase_admin.initialize_app(
+        cred,
+        {"databaseURL": os.environ["FIREBASE_DB_URL"]},
+    )
 
 
 @app.before_request
