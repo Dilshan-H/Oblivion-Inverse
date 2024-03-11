@@ -3,7 +3,7 @@ black==23.3.0
 blinker==1.6.2
 CacheControl==0.13.1
 cachetools==5.3.1
-certifi==2023.5.7
+certifi==2023.7.22
 cffi==1.15.1
 charset-normalizer==3.1.0
 click==8.1.3
