@@ -19,6 +19,7 @@ import firebase_admin
 from dotenv import load_dotenv
 from firebase_admin import auth, credentials
 from flask import Flask, flash, redirect, request, session, url_for
+from waitress import serve
 
 load_dotenv()
 
@@ -97,4 +98,4 @@ if __name__ == "__main__":
     if os.environ["FLASK_DEBUG"].lower() == "true":
         app.run(debug=True)
     else:
-        app.run(debug=False)
+        serve(app)
