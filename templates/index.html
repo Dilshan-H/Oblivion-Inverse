@@ -19,7 +19,7 @@
               <label class="label">Email Subject:</label>
               <div class="control">
                 {{ form.email_title(class="input is-primary is-rounded",
-                placeholder="Sept. budget report", maxlength=25, spellcheck="",
+                placeholder="Sept. budget report", maxlength=80, spellcheck="",
                 autofocus="") }}
               </div>
               <p class="help">Input the subject of your email here</p>
@@ -28,7 +28,7 @@
               <label class="label">To:</label>
               <div class="control">
                 {{ form.email_address(class="input is-primary is-rounded",
-                placeholder="sabrina@example.com", maxlength=25) }}
+                placeholder="sabrina@example.com", maxlength=40) }}
               </div>
               <p class="help">Input the recipient's email address here</p>
             </div>

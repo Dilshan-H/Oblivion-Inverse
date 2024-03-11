@@ -90,7 +90,11 @@
     <a href="{{ url_for('tracking_data', utm_id=item[0]) }}">
       <div id="track-cards" class="card m-3">
         <header class="card-header">
+          {% if item[1]["MailTitle"]|length > 35 %}
+          <p class="card-header-title">{{item[1]["MailTitle"][:35]}}...</p>
+          {% else %}
           <p class="card-header-title">{{item[1]["MailTitle"]}}</p>
+          {% endif %}
         </header>
 
         <div class="card-body" style="padding: 15px">
