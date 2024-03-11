@@ -50,20 +50,10 @@ except FileNotFoundError:
             "universe_domain": os.environ["FIREBASE_UNIVERSE_DOMAIN"],
         }
     )
-
-    # Temp Tests
-    print("--------running--------")
-    print(os.environ["FIREBASE_TYPE"])
-    print(os.environ["FIREBASE_PROJECT_ID"][3:5])
-    print(os.environ["FIREBASE_PRIVATE_KEY_ID"][5:10])
-    print(os.environ["FIREBASE_PRIVATE_KEY"][50:300])
-    # End Temp Tests
-
     app.logger.info("Firebase credentials loaded from environment variables.")
 
 try:
     active_app = firebase_admin.get_app()
-    print(firebase_admin.get_app())
 except ValueError:
     firebase_admin.initialize_app(
         cred,
@@ -104,7 +94,7 @@ def validate_session():
 from routes import *
 
 if __name__ == "__main__":
-    if os.environ["FLASK_ENV"] == "development":
+    if os.environ["FLASK_DEBUG"].lower() == "true":
         app.run(debug=True)
     else:
         app.run(debug=False)
