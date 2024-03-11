@@ -56,6 +56,7 @@ tomlkit==0.11.8
 typing_extensions==4.6.3
 uritemplate==4.1.1
 urllib3==1.26.16
+waitress==3.0.0
 Werkzeug==2.2.3
 wrapt==1.15.0
 WTForms==3.0.1
