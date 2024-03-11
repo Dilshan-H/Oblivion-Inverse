@@ -94,7 +94,7 @@ def validate_session():
 from routes import *
 
 if __name__ == "__main__":
-    if os.environ["FLASK_ENV"] == "development":
+    if os.environ["FLASK_DEBUG"].lower() == "true":
         app.run(debug=True)
     else:
         app.run(debug=False)
