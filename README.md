@@ -2,6 +2,13 @@
 
 🎯️ Oblivion-Inverse is a simple e-mail tracking solution which based on the usage of web beacons or tracking pixels.
 
+> [!NOTE]
+> Built as a small learning project back in the days when we had no massive AI LLMs.
+> Since the project has accumulated numerous security vulnerabilities and outdated dependencies, it's being archived.
+> Also, pixel-based tracking seems to be ineffective due to the use of email privacy proxies nowadays.
+> 
+> Thanks to everyone who opened issues/PRs and starred the repo ❤
+
 ![Oblivion-Inverse Open Source Email Tracker - Cover](https://github.com/Dilshan-H/Oblivion-Inverse/assets/77499497/b0a8d0d8-386b-41af-a61c-afa59ed10629)
 
 
